@@ -207,9 +207,12 @@ class Emergency extends React.Component {
     stats = appeals.filter(o => {
       return selected ? o.id === selected : true;
     }).reduce((acc, o) => {
-      acc.beneficiaries += _toNumber(o.num_beneficiaries);
-      acc.funded += _toNumber(o.amount_funded);
-      acc.requested += _toNumber(o.amount_requested);
+      // only 'Active' appeals are summarized
+      if (o.status === 0) {
+        acc.beneficiaries += _toNumber(o.num_beneficiaries);
+        acc.funded += _toNumber(o.amount_funded);
+        acc.requested += _toNumber(o.amount_requested);
+      }
       return acc;
     }, stats);
     const displayHeadlineStats = stats.beneficiaries || stats.requested || stats.funded;
