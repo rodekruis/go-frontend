@@ -439,6 +439,12 @@ export function getAppealDocsByAppealIds (appealIds, id) {
   return fetchJSON(`api/v2/appeal_document/?ordering=-created_at&appeal__in=${ids}&limit=100`, GET_APPEAL_DOCS, withToken(), { id });
 }
 
+export const GET_APPEAL = 'GET_APPEAL';
+export function getAppealById (id) {
+  const f = buildAPIQS({id});
+  return fetchJSON(`/api/v2/appeal/?${f}`, GET_APPEAL, withToken());
+}
+
 export const GET_DEPLOYMENT_ERU = 'GET_DEPLOYMENT_ERU';
 export function getDeploymentERU (page = 1, filters = {}) {
   filters.limit = filters.limit || 95;

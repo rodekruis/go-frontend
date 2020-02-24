@@ -28,6 +28,7 @@ import Country from './views/countries';
 import Deployments from './views/deployments';
 import Table from './views/table';
 import Appeals from './views/appeals';
+import Appeal from './views/appeal';
 
 import PerForms from './views/per-forms';
 import ViewPerForms from './views/view-per-forms';
@@ -96,6 +97,7 @@ const Root = () => (
         <PrivateRoute exact path='/account' component={Account}/>
         <PrivateRoute exact path='/account/password-change' component={PasswordChange}/>
         <Route exact path='/appeals' component={Appeals} />
+        <Route exact path='/appeal/:id' component={Appeal} />
         <Route exact path='/appeals/all' render={props => <Table {...props} type='appeal' />} />
         <AnonymousRoute exact path='/login' component={Login}/>
         <AnonymousRoute exact path='/register' component={Register}/>

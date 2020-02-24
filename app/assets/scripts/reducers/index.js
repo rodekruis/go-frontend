@@ -20,6 +20,7 @@ import heops from './heops';
 import registration from './registration';
 import password from './password';
 import email from './email';
+import appeal from './appeal';
 import appeals from './appeals';
 import deployments from './deployments';
 import situationReports from './situation-reports';
@@ -50,6 +51,7 @@ export const reducers = {
   eruOwners,
   heops,
   registration,
+  appeal,
   appeals,
   password,
   email,

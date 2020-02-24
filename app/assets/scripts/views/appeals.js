@@ -7,6 +7,7 @@ import { PropTypes as T } from 'prop-types';
 import {
   getAppeals
 } from '../actions';
+import { Link } from 'react-router-dom';
 // import {
 //   FormInput,
 //   FormTextarea,
@@ -16,6 +17,8 @@ import {
 // } from '../../components/form-elements/';
 import App from './app';
 import AppealsTable from '../components/connected/appeals-table';
+import { appealTypes, appealTypeOptions } from '../utils/appeal-type-constants';
+import { showGlobalLoading, hideGlobalLoading } from '../components/global-loading';
 
 class Appeals extends React.Component {
   constructor (props) {
@@ -43,13 +46,14 @@ class Appeals extends React.Component {
 
   renderTableData (data, fetched) {
     if (fetched) {
-      console.log(data);
       return data.results.map((appeal, index) => {
-        const { type, code, name } = appeal;
+        const { atype, code, name } = appeal;
         return (
-          <tr>
-            <td>{type}</td>
-            <td>{code}</td>
+          <tr key={appeal.id}>
+            <td>
+              <Link to={`/appeal/${appeal.id}`} className='link--primary' title='View Appeal'>{code}</Link>
+            </td>
+            <td>{appealTypes[atype]}</td>
             <td>{name}</td>
           </tr>
         );
@@ -63,7 +67,6 @@ class Appeals extends React.Component {
       error,
       data
     } = this.props.appeals;
-    console.log(fetched);
 
     return (
       <App className='page--appeals'>
@@ -78,6 +81,12 @@ class Appeals extends React.Component {
           </header>
           <div className='inpage__body'>
             <div className='inner'>
+              <table className="table table--zebra">
+                <tbody>
+                  {this.renderTableData(data, fetched)}
+                </tbody>
+              </table>
+
               <AppealsTable
                 showActive={false}
                 showHomeMap={false}
@@ -87,12 +96,6 @@ class Appeals extends React.Component {
                 fullscreen={false}
                 toggleFullscreen={this.toggleFullscreen}
               />
-
-              <table>
-                <tbody>
-                  {this.renderTableData(data, fetched)}
-                </tbody>
-              </table>
             </div>
           </div>
         </section>
