@@ -7,15 +7,17 @@ import { PropTypes as T } from 'prop-types';
 import {
   getAppealById
 } from '../actions';
-// import {
-//   FormInput,
-//   FormTextarea,
-//   FormRadioGroup,
-//   FormSelect,
-//   FormError
-// } from '../../components/form-elements/';
+import {
+  FormInput,
+  FormTextarea,
+  FormRadioGroup,
+  FormSelect,
+  FormError
+} from '../components/form-elements/';
 import App from './app';
 import Select from 'react-select';
+import _set from 'lodash.set';
+import _cloneDeep from 'lodash.clonedeep';
 import { appealTypes, appealTypeOptions } from '../utils/appeal-type-constants';
 import { disasterType } from '../utils/field-report-constants';
 import { showGlobalLoading, hideGlobalLoading } from '../components/global-loading';
@@ -24,6 +26,7 @@ class Appeal extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
+      appeal: null,
       appealTypeOptionList: appealTypeOptions.slice(1),
       disasterTypeOptionList: disasterType.slice(1),
       disasterType: -1,
@@ -41,12 +44,9 @@ class Appeal extends React.Component {
 
   componentWillReceiveProps (nextProps) {
     if (nextProps.appeal.fetched) {
-      const appeal = nextProps.appeal.data.results[0];
-
       hideGlobalLoading();
       this.setState({
-        disasterType: appeal.dtype.id,
-        atype: appeal.atype
+        appeal: nextProps.appeal.data.results[0],
       });
     }
   }
@@ -55,18 +55,35 @@ class Appeal extends React.Component {
 
   // }
 
-  onFieldChange (field, e) {
+  onFieldChange (field, fieldType, e) {
     let val = e && e.target ? e.target.value : e;
+    let appeal = _cloneDeep(this.state.appeal);
 
-    if (field === 'disasterType' || field === 'atype') {
-      val = val.value;
+    if (field === 'disasterType') {
+      this.setState({
+        appeal: {
+          ...this.state.appeal,
+          dtype: {
+            id: val.value,
+            name: val.label
+          }
+        }
+      });
+    } else {
+      switch (fieldType) {
+        case 'dropdown':
+          val = Number(val.value);
+          break;
+        case 'number':
+          val = Number(val);
+          break;
+        default:
+          break;
+      }
+
+      _set(appeal, field, val === '' || val === null ? undefined : val);
+      this.setState({appeal});
     }
-
-    let changedObj = {};
-    changedObj[field] = val;
-    console.log(changedObj);
-
-    this.setState(changedObj);
   }
 
   renderContent () {
@@ -115,9 +132,29 @@ class Appeal extends React.Component {
     return (
       <section className='inpage'>
         {this.renderHeader(appeal)}
+
         <div className='inpage__body'>
           <div className='inner'>
             <form className='form'>
+              <div className='form-group'>
+                <div className='form__inner_body'>
+                  <FormInput
+                    label='Aid'
+                    type='text'
+                    name='aid'
+                    id='aid'
+                    value={this.state.appeal.aid}
+                    onChange={this.onFieldChange.bind(this, 'aid', '')}
+                    // description={'very description'}
+                  >
+                    <FormError
+                      errors={this.state.errors}
+                      property='start_date'
+                    />
+                  </FormInput>
+                </div>
+              </div>
+
               <div className='form-group'>
                 <div className='form__inner-header'>
                   <label className='form__label'>Disaster Type</label>
@@ -128,8 +165,8 @@ class Appeal extends React.Component {
                     name='disaster-type'
                     id='disaster-type'
                     options={this.state.disasterTypeOptionList}
-                    value={this.state.disasterType}
-                    onChange={this.onFieldChange.bind(this, 'disasterType')}
+                    value={this.state.appeal.dtype.id}
+                    onChange={this.onFieldChange.bind(this, 'disasterType', '')}
                   />
                 </div>
               </div>
@@ -144,8 +181,8 @@ class Appeal extends React.Component {
                     name='disaster-type'
                     id='disaster-type'
                     options={this.state.appealTypeOptionList}
-                    value={this.state.atype}
-                    onChange={this.onFieldChange.bind(this, 'atype')}
+                    value={this.state.appeal.atype}
+                    onChange={this.onFieldChange.bind(this, 'atype', 'dropdown')}
                   />
                 </div>
               </div>
