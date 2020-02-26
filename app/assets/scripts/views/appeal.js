@@ -5,7 +5,8 @@ import { environment } from '../config';
 import { Helmet } from 'react-helmet';
 import { PropTypes as T } from 'prop-types';
 import {
-  getAppealById
+  getAppealById,
+  getEventList
 } from '../actions';
 import {
   FormInput,
@@ -20,8 +21,9 @@ import Select from 'react-select';
 import _set from 'lodash.set';
 import _cloneDeep from 'lodash.clonedeep';
 import { appealTypes, appealTypeOptions } from '../utils/appeal-type-constants';
-import { disasterType } from '../utils/field-report-constants';
+import { disasterType, countryList } from '../utils/field-report-constants';
 import { appealStatusOptions } from '../utils/utils';
+import { getEventsFromApi } from './field-report-form/data-utils';
 import { showGlobalLoading, hideGlobalLoading } from '../components/global-loading';
 
 class Appeal extends React.Component {
@@ -32,6 +34,8 @@ class Appeal extends React.Component {
       appealStatusOptionList: appealStatusOptions.slice(1),
       appealTypeOptionList: appealTypeOptions.slice(1),
       disasterTypeOptionList: disasterType.slice(1),
+      eventList: null,
+      eventOptionList: getEventsFromApi(),
       disasterType: -1,
       atype: 0,
       errors: null
@@ -43,13 +47,31 @@ class Appeal extends React.Component {
   componentDidMount () {
     showGlobalLoading();
     this.props._getAppealById(3180);
+    this.props._getEventList();
   }
 
   componentWillReceiveProps (nextProps) {
     if (nextProps.appeal.fetched) {
       hideGlobalLoading();
       this.setState({
-        appeal: nextProps.appeal.data.results[0]
+        appeal: {
+          ...nextProps.appeal.data.results[0],
+          start_date: nextProps.appeal.data.results[0].start_date.substring(0, 10),
+          end_date: nextProps.appeal.data.results[0].end_date.substring(0, 10)
+        }
+      });
+    }
+
+    if (nextProps.eventList && nextProps.eventList.fetched) {
+      const results = [{id: '', name: '-- Emergency --'}, ...nextProps.eventList.data.results];
+      const optList = results
+        .map(r => ({
+          value: r.id.toString(),
+          label: r.name
+        }));
+      this.setState({
+        eventList: nextProps.eventList,
+        eventOptionList: optList.sort((a, b) => a.label < b.label ? -1 : 1)
       });
     }
   }
@@ -78,10 +100,20 @@ class Appeal extends React.Component {
           }
         }
       });
+    } else if (field === 'country') {
+      this.setState({
+        appeal: {
+          ...this.state.appeal,
+          country: {
+            id: val.value,
+            name: val.label
+          }
+        }
+      });
     } else {
       switch (fieldType) {
         case 'dropdown':
-          val = Number(val.value);
+          val = Number(val ? val.value : '');
           break;
         case 'number':
           val = Number(val);
@@ -92,6 +124,7 @@ class Appeal extends React.Component {
 
       _set(appeal, field, val === '' || val === null ? undefined : val);
       this.setState({appeal});
+      console.log(this.state.appeal);
     }
   }
 
@@ -99,7 +132,6 @@ class Appeal extends React.Component {
     const { fetched } = this.props.appeal;
 
     if (fetched) {
-      console.log(this.state.appeal);
       return (
         <React.Fragment>
           {this.renderHelmet()}
@@ -121,6 +153,28 @@ class Appeal extends React.Component {
     );
   }
 
+  renderEventList () {
+    return this.state.eventList && this.state.eventList.fetched
+      ? (
+        <div className='form__group'>
+          <div className='form__inner_header'>
+            <label className='form__label'>Emergency</label>
+          </div>
+          <div className='form__inner_body'>
+            <Select
+              placeholder='Select an Emergency'
+              name='emergency'
+              id='emergency'
+              options={this.state.eventOptionList}
+              value={this.state.appeal.event}
+              onChange={this.onFieldChange.bind(this, 'event', 'dropdown')}
+            />
+          </div>
+        </div>
+      )
+      : (<div></div>);
+  }
+
   renderHeader () {
     return (
       <header className='inpage__header'>
@@ -132,7 +186,6 @@ class Appeal extends React.Component {
   }
 
   renderBody () {
-    console.log(this.state.appeal);
     return (
       <section className='inpage'>
         {this.renderHeader()}
@@ -216,6 +269,7 @@ class Appeal extends React.Component {
                   />
                 </FormInput>
 
+                {/* TODO: date initial value not working */}
                 <FormInput
                   label='Start date'
                   type='date'
@@ -298,6 +352,7 @@ class Appeal extends React.Component {
                       options={this.state.appealStatusOptionList}
                       value={this.state.appeal.status}
                       onChange={this.onFieldChange.bind(this, 'status', 'dropdown')}
+                      clearable={false}
                     />
                   </div>
                 </div>
@@ -314,6 +369,7 @@ class Appeal extends React.Component {
                       options={this.state.disasterTypeOptionList}
                       value={this.state.appeal.dtype.id}
                       onChange={this.onFieldChange.bind(this, 'disasterType', '')}
+                      clearable={false}
                     />
                   </div>
                 </div>
@@ -330,6 +386,26 @@ class Appeal extends React.Component {
                       options={this.state.appealTypeOptionList}
                       value={this.state.appeal.atype}
                       onChange={this.onFieldChange.bind(this, 'atype', 'dropdown')}
+                      clearable={false}
+                    />
+                  </div>
+                </div>
+
+                {this.renderEventList()}
+
+                <div className='form__group'>
+                  <div className='form__inner_header'>
+                    <label className='form__label'>Country</label>
+                  </div>
+                  <div className='form__inner_body'>
+                    <Select
+                      placeholder='Select a Country'
+                      name='country'
+                      id='country'
+                      options={countryList}
+                      value={this.state.appeal.country.id}
+                      onChange={this.onFieldChange.bind(this, 'country', 'dropdown')}
+                      clearable={false}
                     />
                   </div>
                 </div>
@@ -352,7 +428,6 @@ class Appeal extends React.Component {
 }
 
 // TODO: make an input for all other Appeal fields
-// dropdown: event, country
 // text: region (not editable)
 // date: start date, end date
 // checkbox: needs confirmation
@@ -370,12 +445,16 @@ if (environment !== 'production') {
 // /////////////////////////////////////////////////////////////////// //
 // Connect functions
 
-const selector = (state, ownProps) => ({
-  appeal: state.appeal
-});
+const selector = (state, ownProps) => {
+  return {
+    appeal: state.appeal,
+    eventList: state.event ? state.event.eventList : undefined
+  };
+};
 
 const dispatcher = (dispatch) => ({
   _getAppealById: (...args) => dispatch(getAppealById(...args)),
+  _getEventList: (...args) => dispatch(getEventList(...args)),
   // _updateProject: (...args) => dispatch(updateProject(...args)),
   // _getProjectById: (...args) => dispatch(getProjectById(...args))
 });
