@@ -38,7 +38,6 @@ class Appeal extends React.Component {
       disasterTypeOptionList: disasterType.slice(1),
       eventList: [],
       eventOptionList: getEventsFromApi(),
-      initialEventId: null,
       disasterType: -1,
       atype: 0,
       errors: null
@@ -49,10 +48,10 @@ class Appeal extends React.Component {
 
   componentDidMount () {
     showGlobalLoading();
-    // TODO: get the appeal ID, etc
-    this.props._getAppealById(3180);
+
+    this.props._getAppealById(this.props.match.params.id);
     this.props._getEventList();
-    this.props._getAppealDocsByAppealIds(3180, 3552);
+    this.props._getAppealDocsByAppealIds(this.props.match.params.id, this.props.match.params.id);
   }
 
   componentWillReceiveProps (nextProps) {
@@ -64,8 +63,7 @@ class Appeal extends React.Component {
           ...nextProps.appeal.data.results[0],
           start_date: nextProps.appeal.data.results[0].start_date.substring(0, 10),
           end_date: nextProps.appeal.data.results[0].end_date.substring(0, 10)
-        },
-        initialEventId: !this.state.initialEventId ? nextProps.appeal.data.results[0].event : this.state.initialEventId
+        }
       });
     }
 
@@ -82,7 +80,7 @@ class Appeal extends React.Component {
       });
     }
 
-    if (nextProps.appeal.fetched && nextProps.appealDocuments[nextProps.appeal.data.results[0].event] && nextProps.appealDocuments[nextProps.appeal.data.results[0].event].fetched) {
+    if (nextProps.appeal.fetched && nextProps.appealDocuments[nextProps.appeal.data.results[0].id] && nextProps.appealDocuments[nextProps.appeal.data.results[0].id].fetched) {
       this.setState({
         appealDocuments: nextProps.appealDocuments
       });
@@ -198,11 +196,11 @@ class Appeal extends React.Component {
   }
 
   renderAppealDocs () {
-    return this.state.appealDocuments[this.state.initialEventId] && this.state.appealDocuments[this.state.initialEventId].fetched
+    return this.state.appealDocuments[this.state.appeal.id] && this.state.appealDocuments[this.state.appeal.id].fetched && this.state.appealDocuments[this.state.appeal.id].data.count > 0
       ? (
         <Fold title='Documents'>
           <ul>
-            {this.state.appealDocuments[this.state.initialEventId].data.results.map(d => (
+            {this.state.appealDocuments[this.state.appeal.id].data.results.map(d => (
               <li key={d.id}>
                 {d.name} {d.document_url ? `- ${d.document_url}` : ''} {d.document ? `- ${d.document}` : ''}
               </li>
