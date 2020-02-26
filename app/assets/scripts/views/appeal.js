@@ -269,7 +269,6 @@ class Appeal extends React.Component {
                   />
                 </FormInput>
 
-                {/* TODO: date initial value not working */}
                 <FormInput
                   label='Start date'
                   type='date'
@@ -329,6 +328,15 @@ class Appeal extends React.Component {
                     property='sector'
                   />
                 </FormInput>
+
+                <div className='form__group'>
+                  <div className='form__inner_header'>
+                    <label className='form__label'>Region</label>
+                  </div>
+                  <div className='form__inner_body'>
+                    {this.state.appeal.region.region_name}
+                  </div>
+                </div>
 
                 <FormCheckbox
                   label='Needs confirmation'
@@ -429,8 +437,6 @@ class Appeal extends React.Component {
 
 // TODO: make an input for all other Appeal fields
 // text: region (not editable)
-// date: start date, end date
-// checkbox: needs confirmation
 // list: appeal documents
 
 if (environment !== 'production') {
