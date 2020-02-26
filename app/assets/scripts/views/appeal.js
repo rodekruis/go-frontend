@@ -6,6 +6,7 @@ import { Helmet } from 'react-helmet';
 import { PropTypes as T } from 'prop-types';
 import {
   getAppealById,
+  getAppealDocsByAppealIds,
   getEventList
 } from '../actions';
 import {
@@ -31,11 +32,13 @@ class Appeal extends React.Component {
     super(props);
     this.state = {
       appeal: null,
+      appealDocuments: [],
       appealStatusOptionList: appealStatusOptions.slice(1),
       appealTypeOptionList: appealTypeOptions.slice(1),
       disasterTypeOptionList: disasterType.slice(1),
-      eventList: null,
+      eventList: [],
       eventOptionList: getEventsFromApi(),
+      initialEventId: null,
       disasterType: -1,
       atype: 0,
       errors: null
@@ -46,19 +49,25 @@ class Appeal extends React.Component {
 
   componentDidMount () {
     showGlobalLoading();
+    // TODO: get the appeal ID, etc
     this.props._getAppealById(3180);
     this.props._getEventList();
+    this.props._getAppealDocsByAppealIds(3180, 3552);
   }
 
   componentWillReceiveProps (nextProps) {
     if (nextProps.appeal.fetched) {
       hideGlobalLoading();
+
+      // this.props._getAppealDocsByAppealIds(nextProps.appeal.data.results[0].id, nextProps.appeal.data.results[0].event);
+
       this.setState({
         appeal: {
           ...nextProps.appeal.data.results[0],
           start_date: nextProps.appeal.data.results[0].start_date.substring(0, 10),
           end_date: nextProps.appeal.data.results[0].end_date.substring(0, 10)
-        }
+        },
+        initialEventId: !this.state.initialEventId ? nextProps.appeal.data.results[0].event : this.state.initialEventId
       });
     }
 
@@ -72,6 +81,12 @@ class Appeal extends React.Component {
       this.setState({
         eventList: nextProps.eventList,
         eventOptionList: optList.sort((a, b) => a.label < b.label ? -1 : 1)
+      });
+    }
+
+    if (nextProps.appeal.fetched && nextProps.appealDocuments[nextProps.appeal.data.results[0].event] && nextProps.appealDocuments[nextProps.appeal.data.results[0].event].fetched) {
+      this.setState({
+        appealDocuments: nextProps.appealDocuments
       });
     }
   }
@@ -124,7 +139,6 @@ class Appeal extends React.Component {
 
       _set(appeal, field, val === '' || val === null ? undefined : val);
       this.setState({appeal});
-      console.log(this.state.appeal);
     }
   }
 
@@ -183,6 +197,22 @@ class Appeal extends React.Component {
         </div>
       </header>
     );
+  }
+
+  renderAppealDocs () {
+    return this.state.appealDocuments[this.state.initialEventId] && this.state.appealDocuments[this.state.initialEventId].fetched
+      ? (
+        <Fold title='Documents'>
+          <ul>
+            {this.state.appealDocuments[this.state.initialEventId].data.results.map(d => (
+              <li key={d.id}>
+                {d.name} {d.document_url ? `- ${d.document_url}` : ''} {d.document ? `- ${d.document}` : ''}
+              </li>
+            ))}
+          </ul>
+        </Fold>
+      )
+      : (<div></div>);
   }
 
   renderBody () {
@@ -420,6 +450,7 @@ class Appeal extends React.Component {
               </Fold>
             </form>
 
+            {this.renderAppealDocs()}
           </div>
         </div>
       </section>
@@ -436,7 +467,6 @@ class Appeal extends React.Component {
 }
 
 // TODO: make an input for all other Appeal fields
-// text: region (not editable)
 // list: appeal documents
 
 if (environment !== 'production') {
@@ -444,7 +474,8 @@ if (environment !== 'production') {
     _getAppealById: T.func,
     // _updateProject: T.func,
     // _getProjectById: T.func,
-    appeal: T.object
+    appeal: T.object,
+    appealDocuments: T.object
   };
 }
 
@@ -454,12 +485,14 @@ if (environment !== 'production') {
 const selector = (state, ownProps) => {
   return {
     appeal: state.appeal,
+    appealDocuments: state.appealDocuments,
     eventList: state.event ? state.event.eventList : undefined
   };
 };
 
 const dispatcher = (dispatch) => ({
   _getAppealById: (...args) => dispatch(getAppealById(...args)),
+  _getAppealDocsByAppealIds: (...args) => dispatch(getAppealDocsByAppealIds(...args)),
   _getEventList: (...args) => dispatch(getEventList(...args)),
   // _updateProject: (...args) => dispatch(updateProject(...args)),
   // _getProjectById: (...args) => dispatch(getProjectById(...args))
