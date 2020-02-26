@@ -114,6 +114,7 @@ class Header extends React.PureComponent {
               <ul className='nav-global-menu'>
                 <li><Link to='/' title='Visit Home page' className={this.props.match.path === '/' ? 'navbar-highlighted' : null}><span>Home</span></Link></li>
                 <li><HeaderRegionButton id='regions-menu' currentPath={this.props.match} /></li>
+                <li><Link to='/appeals' title='Visit Appeals page' className={this.props.match.path.includes('/appeals') ? 'navbar-hightlighted' : null}><span>Appeals</span></Link></li>
                 <li><Link to='/emergencies' title='Visit emergencies page' className={this.props.match.path.includes('/emergencies') ? 'navbar-highlighted' : null}><span>Emergencies</span></Link></li>
                 <li><Link to='/deployments' title='Visit Deployments page' className={this.props.match.path.includes('/deployments') ? 'navbar-highlighted' : null}><span>Deployments</span></Link></li>
                 <li><Link to='/preparedness' title='Visit Preparedness page' className={this.props.match.path.includes('/preparedness') ? 'navbar-highlighted' : null}><span>Preparedness</span></Link></li>
