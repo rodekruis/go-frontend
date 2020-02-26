@@ -59,8 +59,6 @@ class Appeal extends React.Component {
     if (nextProps.appeal.fetched) {
       hideGlobalLoading();
 
-      // this.props._getAppealDocsByAppealIds(nextProps.appeal.data.results[0].id, nextProps.appeal.data.results[0].event);
-
       this.setState({
         appeal: {
           ...nextProps.appeal.data.results[0],
@@ -465,9 +463,6 @@ class Appeal extends React.Component {
     );
   }
 }
-
-// TODO: make an input for all other Appeal fields
-// list: appeal documents
 
 if (environment !== 'production') {
   Appeal.propTypes = {
