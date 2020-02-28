@@ -362,6 +362,39 @@ class Emergency extends React.Component {
     );
   }
 
+  renderAppeals () {
+    const { data } = this.props.event;
+    if (data.appeals && data.appeals.length) {
+      return (
+        <Fold id='appeals' title={`Appeals (${data.appeals.length})`} wrapperClass='event-appeals'>
+          <table className='table table--zebra'>
+            <thead>
+              <tr>
+                <th>Start Date</th>
+                <th>Name</th>
+                <th>Num. beneficiaries</th>
+                <th>Amount requested</th>
+                <th>Amount funded</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.appeals.map(o => (
+                <tr key={o.id}>
+                  <td>{isoDate(o.start_date)}</td>
+                  <td>{o.name}</td>
+                  <td>{o.num_beneficiaries}</td>
+                  <td>{o.amount_requested}</td>
+                  <td>{o.amount_funded}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </Fold>
+      );
+    }
+    return null;
+  }
+
   renderResponseDocuments () {
     const data = get(this.props.situationReports, 'data.results', []);
     const { date, type } = this.state.sitrepFilters;
@@ -553,6 +586,9 @@ class Emergency extends React.Component {
                 </TabContent>
                 <TabContent isError={!get(this.props.event, 'data.field_reports.length')} errorMessage={ NO_DATA } title="Field Reports">
                   {this.renderFieldReports()}
+                </TabContent>
+                <TabContent isError={!get(this.props.event, 'data.appeals.length')} errorMessage={ NO_DATA } title="Appeals">
+                  {this.renderAppeals()}
                 </TabContent>
                 <TabContent isError={!get(this.props.appealDocuments, 'data.results.length')} errorMessage={ NO_DATA } title="Appeal Documents">
                   {this.renderAppealDocuments()}
