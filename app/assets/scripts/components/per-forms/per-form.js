@@ -228,6 +228,11 @@ export default class PerForm extends React.Component {
     this.saveState('autosave');
   }
 
+  isFieldRequired (namespace) {
+    console.log('required check', namespace);
+    return false;
+  }
+
   checkFormFilled () {
     let componentIndex = 0;
     const formError = {filled: true, firstQuestionOffset: 0};
@@ -241,7 +246,7 @@ export default class PerForm extends React.Component {
     for (let component of this.state.components) {
       if (typeof component.namespaces !== 'undefined' && component.namespaces !== null) {
         for (let questionIndex in component.namespaces) {
-          if (document.querySelectorAll('[name=\'c' + componentIndex + 'q' + questionIndex + '\']:checked').length < 1) {
+          if (document.querySelectorAll('[name=\'c' + componentIndex + 'q' + questionIndex + '\']:checked').length < 1 && this.isFieldRequired(component.namespaces[questionIndex])) {
             document.getElementById('container' + componentIndex + 'q' + questionIndex).style.backgroundColor = '#FEB8B8';
             if (formError.firstQuestionOffset === 0) {
               formError.firstQuestionOffset = document.getElementById('container' + componentIndex + 'q' + questionIndex).offsetTop;
