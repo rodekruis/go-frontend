@@ -24,6 +24,16 @@ const assessmentTypes = [
   'Post operational'
 ];
 
+// Ref: https://github.com/IFRCGo/go-api/blob/master/per/models.py#L26 
+const PER_PHASES = {
+  '0': 'Baseline',
+  '1': 'Orientation',
+  '2': 'Assessment',
+  '3': 'Prioritization',
+  '4': 'Plan of Action',
+  '5': 'Action and Accountability'
+};
+
 class OverviewForm extends React.Component {
   constructor (props) {
     super(props);
@@ -83,6 +93,7 @@ class OverviewForm extends React.Component {
       country_id: parseInt(this.props.nationalSociety),
       user_id: this.props.user.data.id,
       type_of_capacity_assessment: parseInt(document.getElementsByName('capacity_assessment_type')[0].value),
+      current_per_phase: document.getElementsByName('current_per_phase')[0].value,
       branch_involved: document.getElementsByName('branch_involved')[0].value,
       focal_point_name: document.getElementsByName('focal_point_name')[0].value,
       focal_point_email: document.getElementsByName('focal_point_email')[0].value,
@@ -111,6 +122,7 @@ class OverviewForm extends React.Component {
       name: 'overview',
       submitted_at: new Date().toISOString(),
       type_of_capacity_assessment: parseInt(document.getElementsByName('capacity_assessment_type')[0].selectedIndex),
+      current_per_phase: document.getElementsByName('current_per_phase')[0].value,
       branch_involved: document.getElementsByName('branch_involved')[0].value,
       focal_point_name: document.getElementsByName('focal_point_name')[0].value,
       focal_point_email: document.getElementsByName('focal_point_email')[0].value,
@@ -151,6 +163,7 @@ class OverviewForm extends React.Component {
   loadDraft () {
     const data = this.loadedDraft;
     document.getElementsByName('capacity_assessment_type')[0].selectedIndex = data.type_of_capacity_assessment;
+    document.getElementsByName('current_per_phase')[0].value = data.current_per_phase;
     document.getElementsByName('branch_involved')[0].value = data.branch_involved;
     document.getElementsByName('focal_point_name')[0].value = data.focal_point_name;
     document.getElementsByName('focal_point_email')[0].value = data.focal_point_email;
@@ -230,6 +243,9 @@ class OverviewForm extends React.Component {
 
                 Type of capacity assessment<br />
                 <input type='text' className='form__control form__control--medium' disabled='disabled' value={this.props.perOverviewForm.data.results[0].type_of_capacity_assessment === null ? '' : assessmentTypes[this.props.perOverviewForm.data.results[0].type_of_capacity_assessment]} /><br /><br />
+
+                Current PER Phase<br />
+                <input type='text' className='form__control form__control--medium' disabled='disabled' value={this.props.perOverviewForm.data.results[0].current_per_phase === null ? '' : this.props.perOverviewForm.data.results[0].current_per_phase} /><br /><br />
 
                 Branch involved:<br />
                 <input type='text' className='form__control form__control--medium' disabled='disabled' value={this.props.perOverviewForm.data.results[0].branch_involved === null ? '' : this.props.perOverviewForm.data.results[0].branch_involved} /><br /><br />
@@ -349,6 +365,17 @@ class OverviewForm extends React.Component {
                   <option value='1'>Simulation</option>
                   <option value='2'>Operation</option>
                   <option value='3'>Post operational</option>
+                </select><br /><br />
+
+                Current PER phase<br />
+                <select name='current_per_phase' className='form__control form__control--medium' style={{width: '300px', display: 'inline-block'}}>
+                  {
+                    Object.keys(PER_PHASES).map(key => {
+                      return (
+                        <option value={key} key={key}>{ PER_PHASES[key] }</option>
+                      );
+                    })
+                  }
                 </select><br /><br />
 
                 Branch involved:<br />
