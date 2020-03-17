@@ -29,6 +29,7 @@ import {
   getCountryOperations,
   getPartnerDeployments,
   setPartnerDeploymentFilter,
+  setPerNsPhase,
   getPerNsPhase,
   getPerOverviewForm,
   getPerWorkPlan,
@@ -67,6 +68,7 @@ import PreparednessSummary from '../components/country/preparedness-summary';
 import PreparednessWorkPlan from '../components/country/preparedness-work-plan';
 import PreparednessPhaseOutcomes from '../components/country/preparedness-phase-outcomes';
 import PreparednessColumnBar from '../components/country/preparedness-column-graph';
+import PreparednessSetPhase from '../components/country/preparedness-set-phase';
 import KeyFiguresHeader from '../components/common/key-figures-header';
 import { SFPComponent } from '../utils/extendables';
 import { NO_DATA } from '../utils/constants';
@@ -594,6 +596,11 @@ class AdminArea extends SFPComponent {
   }
   */
 
+  setPerPhase (newPhase) {
+    const countryId = this.props.countryId;
+    console.log('called set per phase', newPhase, countryId);
+  }
+
   renderContent () {
     const {
       fetched,
@@ -742,7 +749,10 @@ class AdminArea extends SFPComponent {
                 <TabContent showError={true} isError={!this.isPerPermission()} errorMessage='Please log in' title='Preparedness'>
                   {this.props.getPerNsPhase.fetched && this.props.perOverviewForm.fetched ? (
                     <PreparednessOverview getPerNsPhase={this.props.getPerNsPhase} perOverviewForm={this.props.perOverviewForm} />)
-                    : <ErrorPanel title='Preparedness Overciew' errorMessage={ NO_DATA } />}
+                    : <ErrorPanel title='Preparedness Overview' errorMessage={ NO_DATA } />}
+                  { this.props.getPerNsPhase.fetched && this.props.perOverviewForm.fetched ? (
+                    <PreparednessSetPhase currentPhase={this.props.getPerNsPhase}  onChange={this.setPerPhase} />)
+                  : <ErrorPanel title='Set PER Phase' errorMessage={ NO_DATA } /> }
                   {this.props.getPerDocument.fetched && this.props.getPerDocuments.fetched ? (
                     <PreparednessSummary getPerDocument={this.props.getPerDocument} getPerDocuments={this.props.getPerDocuments} />)
                     : <ErrorPanel title='Preparedness Summary' errorMessage={ NO_DATA } />}
@@ -889,6 +899,7 @@ if (environment !== 'production') {
     _getPerDocuments: T.func,
     _getPeruploadedDocuments: T.func,
     _getAppealsListStats: T.func,
+    _setPerNsPhase: T.func,
     type: T.string,
     match: T.object,
     history: T.object,
@@ -953,6 +964,7 @@ const dispatcher = dispatch => ({
   _getPerMission: (...args) => dispatch(getPerMission(...args)),
   _getProjects: (...args) => dispatch(getProjects(...args)),
   _getAppealsListStats: (...args) => dispatch(getAppealsListStats(...args)),
+  _setPerNsPhase: (...args) => dispatch(setPerNsPhase(...args))
 });
 
 export default connect(

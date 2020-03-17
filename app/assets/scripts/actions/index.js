@@ -560,6 +560,15 @@ export function getPerNsPhase (countryId = null) {
   return fetchJSON(`api/v2/per_ns_phase/?${f}`, PER_NS_PHASE, withToken());
 }
 
+export const SET_PER_NS_PHASE = 'SET_PER_NS_PHASE';
+export function setPerNsPhase (countryId, phase) {
+  const payload = {
+    country: countryId,
+    phase: phase
+  };
+  return postJSON(`api/v2/set_per_ns_phase/`, SET_PER_NS_PHASE, payload, withToken());  
+}
+
 export const PER_OVERVIEW_FORM = 'PER_OVERVIEW_FORM';
 export function getPerOverviewForm (countryId = null, formId = null) {
   const f = buildAPIQS({country: countryId, id: formId});
