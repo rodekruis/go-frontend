@@ -643,7 +643,7 @@ class Emergency extends React.Component {
                   <Fold id='overview'
                     title='Situational Overview'
                     wrapperClass='situational-overview' >
-                    <Expandable sectionClass='rich-text-section' limit={2048} text={summary} />
+                    <p><Expandable sectionClass='rich-text-section' limit={2048} text={summary} /></p>
                   </Fold>
                 </TabContent>
                 <TabContent title="Alerts">
