@@ -193,7 +193,7 @@ class AdminArea extends SFPComponent {
 
     const tabHashArray = tabDetails.map(({ hash }) => hash);
     if (!tabHashArray.find(hash => hash === this.props.location.hash)) {
-      this.props.history.replace(`${this.props.location.pathname}${tabHashArray[0]}`);
+      this.props.history.replace(`${this.props.location.pathname}${tabHashArray[1]}`);
     }
   }
 
@@ -627,7 +627,7 @@ class AdminArea extends SFPComponent {
                 </span>
               ) : null}
             </h1>
-            <div className='inpage__header-actions'>
+            <div className='inpage__header-actions hidden'>
               <a
                 href={url.resolve(api, `api/country/${data.id}/change/`)}
                 className='button button--primary-bounded'
@@ -646,7 +646,7 @@ class AdminArea extends SFPComponent {
           selectedIndex={tabDetails.map(({ hash }) => hash).indexOf(this.props.location.hash)}
           onSelect={index => handleTabChange(index)}
         >
-          <TabList>
+          <TabList className="hidden">
             {tabDetails.map(tab => (
               <Tab key={tab.title}>{tab.title}</Tab>
             ))}

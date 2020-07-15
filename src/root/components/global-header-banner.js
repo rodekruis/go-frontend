@@ -4,7 +4,7 @@ import Translate from '#components/Translate';
 class GlobalHeaderBanner extends React.PureComponent {
   render () {
     return (
-      <div className='global__banner global__banner--danger text-center'>
+      <div className='global__banner global__banner--danger text-center hidden'>
         <Translate
           stringId='globalHeaderBannerTitle'
           params={{

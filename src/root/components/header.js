@@ -104,14 +104,14 @@ function Header (props) {
                 <Translate stringId="headerMenuResources" />
               </Link>
               <UserMenu />
-              <Link to='/reports/new' className='button button--small button--primary-bounded' title={strings.headerCreateFieldReportTooltip}>
+              <Link to='/reports/new' className='button button--small button--primary-bounded hidden' title={strings.headerCreateFieldReportTooltip}>
                 <Translate stringId="headerCreateFieldReportLabel" />
               </Link>
               <LanguageSelect />
             </nav>
           </div>
         </div>
-        <div className='inner'>
+        <div className='inner hidden'>
           <nav className='page__prime-nav' role='navigation'>
             <ul className='nav-global-menu'>
               <li>

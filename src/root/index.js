@@ -104,6 +104,8 @@ function Root () {
         <Router>
           <BreadcrumbsProvider>
             <Switch>
+              <Redirect exact from="/" to="/countries/123" />
+              <Redirect exact from="/regions/:id" to="/countries/123" />
               <Route exact path='/' component={Home}/>
               <Route exact path='/covid19-3w-sankey' component={Covid19ThreeWSankey}/>
               <Route exact path='/translation-dashboard' component={TranslationDashboard}/>
