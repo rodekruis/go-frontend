@@ -6,6 +6,9 @@ import memoize from 'memoize-one';
 
 import SelectInput from '#components/form-elements/select-input';
 import {
+  organizationalUnitOptions,
+  partnerOptions,
+  activityOptions,
   statusList,
   sectorList,
   secondarySectorList,
@@ -41,7 +44,9 @@ export default class ThreeWFilter extends React.PureComponent {
 
     this.state = {
       filterValues: {
-        reporting_ns: undefined,
+        organizational_unit: undefined,
+        partner: undefined,
+        activity: undefined,
         programme_type: undefined,
         primary_sector: undefined,
         status: undefined,
@@ -50,7 +55,9 @@ export default class ThreeWFilter extends React.PureComponent {
 
     this.schema = {
       fields: {
-        reporting_ns: [],
+        organizational_unit: [],
+        partner: [],
+        activity: [],
         programme_type: [],
         primary_sector: [],
         secondary_sectors: [],
@@ -59,13 +66,31 @@ export default class ThreeWFilter extends React.PureComponent {
     };
   }
 
-  getNationalSocietiesOptions = memoize((projectList) => {
-    const nationalSocietiesOptions = unique(projectList.map(p => ({
-      value: p.reporting_ns,
-      label: p.reporting_ns_detail.society_name,
+  getOrganizationalUnitOptions = memoize((projectList) => {
+    const organizationalUnits = unique(projectList.map(p => ({
+      value: p.organizational_unit,
+      label: organizationalUnitOptions[p.organizational_unit].label,
     })), p => p.value);
 
-    return nationalSocietiesOptions;
+    return organizationalUnits;
+  })
+
+  getPartnerOptions = memoize((projectList) => {
+    const partners = unique(projectList.map(p => ({
+      value: p.partner,
+      label: partnerOptions[p.partner].label,
+    })), p => p.value);
+
+    return partners;
+  })
+
+  getActivityOptions = memoize((projectList) => {
+    const activities = unique(projectList.map(p => ({
+      value: p.activity,
+      label: activityOptions[p.activity].label,
+    })), p => p.value);
+
+    return activities;
   })
 
   handleFaramChange = (filterValues) => {
@@ -94,10 +119,24 @@ export default class ThreeWFilter extends React.PureComponent {
         onChange={this.handleFaramChange}
       >
         <SelectInput
-          faramElementName='reporting_ns'
+          faramElementName='organizational_unit'
           label={strings.threeWFilter}
-          placeholder={strings.threeWFilterReportingNsPlaceholer}
-          options={this.getNationalSocietiesOptions(projectList)}
+          placeholder={strings.threeWFilterOrganizationalUnitPlaceholer}
+          options={this.getOrganizationalUnitOptions(projectList)}
+          className='select-input'
+        />
+        <SelectInput
+          faramElementName='partner'
+          label={strings.threeWFilter}
+          placeholder={strings.threeWFilterPartnerPlaceholer}
+          options={this.getPartnerOptions(projectList)}
+          className='select-input'
+        />
+        <SelectInput
+          faramElementName='activity'
+          label={strings.threeWFilter}
+          placeholder={strings.threeWFilterActivityPlaceholer}
+          options={this.getActivityOptions(projectList)}
           className='select-input'
         />
         <SelectInput
