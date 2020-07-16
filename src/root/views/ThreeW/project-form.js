@@ -38,11 +38,9 @@ import {
   statuses,
   organizationalUnitOptions,
   partnerOptions,
-  // sectorList,
-  alternateSectorList,
-  alternateSecondarySectorList,
+  sectorList,
   secondarySectorInputValues,
-  // secondarySectorList,
+  secondarySectorList,
   defaultSubactivityOptions,
   activityOptions,
   unitsOfMeasurementOptions,
@@ -73,22 +71,12 @@ const statusOptions = statusList.map(p => ({
 })).sort(compareString);
 */
 
-// const sectorOptions = sectorList.map(p => ({
-//   value: p.inputValue,
-//   label: p.title,
-// })).sort(compareString);
-
-// const secondarySectorOptions = secondarySectorList.map(p => ({
-//   value: p.inputValue,
-//   label: p.title,
-// })).sort(compareString);
-
-const alternateSectorOptions = alternateSectorList.map(p => ({
+const sectorOptions = sectorList.map(p => ({
   value: p.inputValue,
   label: p.title,
 })).sort(compareString);
 
-const alternateSecondarySectorOptions = alternateSecondarySectorList.map(p => ({
+const secondarySectorOptions = secondarySectorList.map(p => ({
   value: p.inputValue,
   label: p.title,
 })).sort(compareString);
@@ -665,12 +653,8 @@ class ProjectForm extends React.PureComponent {
     return schema;
   });
 
-//   getFilteredSecondarySectorOptions = memoize((sector) => (
-//     secondarySectorOptions.filter(d => d.value !== sector)
-//   ));
-
-  getFilteredAlternateSecondarySectorOptions = memoize((sector) => (
-    alternateSecondarySectorOptions.filter(d => d.value !== sector)
+  getFilteredSecondarySectorOptions = memoize((sector) => (
+    secondarySectorOptions.filter(d => d.value !== sector)
   ));
 
   getFilteredSubactivityOptions = memoize((activity) => (
@@ -768,8 +752,7 @@ class ProjectForm extends React.PureComponent {
 
     const shouldDisableTotalTarget = !isFalsy(faramValues.target_male) || !isFalsy(faramValues.target_female) || !isFalsy(faramValues.target_other);
     const shouldDisableTotalReached = !isFalsy(faramValues.reached_male) || !isFalsy(faramValues.reached_female) || !isFalsy(faramValues.reached_other);
-    // const filteredSecondarySectorOptions = this.getFilteredSecondarySectorOptions(faramValues.sector);
-    const filteredAlternateSecondarySectorOptions = this.getFilteredAlternateSecondarySectorOptions(faramValues.sector);
+    const filteredSecondarySectorOptions = this.getFilteredSecondarySectorOptions(faramValues.sector);
     const filteredSubactivityOptions = this.getFilteredSubactivityOptions(faramValues.activity);
 
     const filteredDistrictOptions = this.getFilteredDistrictOptions(faramValues.where_province);
@@ -968,13 +951,13 @@ class ProjectForm extends React.PureComponent {
               faramElementName='primary_sector'
               className='project-form-select'
               label={strings.projectFormPrimarySectorSelect}
-              options={alternateSectorOptions}
+              options={sectorOptions}
             />
             <SelectInput
               faramElementName='secondary_sectors'
               className='project-form-select'
               label={strings.projectFormSecondarySectorLabel}
-              options={filteredAlternateSecondarySectorOptions}
+              options={filteredSecondarySectorOptions}
               multi
             />
           </InputSection>
