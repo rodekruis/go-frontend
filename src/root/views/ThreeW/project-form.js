@@ -36,9 +36,21 @@ import {
 import {
   // statusList,
   statuses,
-  sectorList,
+  organizationalUnitOptions,
+  partnerOptions,
+  // sectorList,
+  alternateSectorList,
+  alternateSecondarySectorList,
   secondarySectorInputValues,
-  secondarySectorList,
+  // secondarySectorList,
+  defaultSubactivityOptions,
+  activityOptions,
+  unitsOfMeasurementOptions,
+  defaultDistrictOptions,
+  defaultMunicipalityOptions,
+  provinceOptions,
+  deliveryPointOptions,
+  beneficiaryTypeOptions,
   programmeTypeList,
   operationTypeList,
   projectVisibilityList,
@@ -61,12 +73,22 @@ const statusOptions = statusList.map(p => ({
 })).sort(compareString);
 */
 
-const sectorOptions = sectorList.map(p => ({
+// const sectorOptions = sectorList.map(p => ({
+//   value: p.inputValue,
+//   label: p.title,
+// })).sort(compareString);
+
+// const secondarySectorOptions = secondarySectorList.map(p => ({
+//   value: p.inputValue,
+//   label: p.title,
+// })).sort(compareString);
+
+const alternateSectorOptions = alternateSectorList.map(p => ({
   value: p.inputValue,
   label: p.title,
 })).sort(compareString);
 
-const secondarySectorOptions = secondarySectorList.map(p => ({
+const alternateSecondarySectorOptions = alternateSecondarySectorList.map(p => ({
   value: p.inputValue,
   label: p.title,
 })).sort(compareString);
@@ -165,6 +187,7 @@ class ProjectForm extends React.PureComponent {
         target_other: [positiveIntegerCondition],
         target_female: [positiveIntegerCondition],
         target_male: [positiveIntegerCondition],
+        target_lgbtiq: [positiveIntegerCondition],
         target_total: [requiredCondition, positiveIntegerCondition],
         visibility: [requiredCondition],
       },
@@ -197,18 +220,20 @@ class ProjectForm extends React.PureComponent {
         programme_type: projectData.programme_type,
         end_date: projectData.end_date,
         start_date: projectData.start_date,
-        reached_other: projectData.reached_other || undefined,
-        reached_female: projectData.reached_female || undefined,
-        reached_male: projectData.reached_male || undefined,
-        reached_total: projectData.reached_total || undefined,
+        reached_lgbtiq: projectData.reached_lgbtiq || 0,
+        reached_other: projectData.reached_other || 0,
+        reached_female: projectData.reached_female || 0,
+        reached_male: projectData.reached_male || 0,
+        reached_total: projectData.reached_total || 0,
         reporting_ns: projectData.reporting_ns,
         secondary_sectors: projectData.secondary_sectors ? projectData.secondary_sectors.map(d => secondarySectorInputValues[d]) : [],
         is_project_completed: projectData.status === 2,
         status: projectData.status,
-        target_other: projectData.target_other || undefined,
-        target_female: projectData.target_female || undefined,
-        target_male: projectData.target_male || undefined,
-        target_total: projectData.target_total || undefined,
+        target_lgbtiq: projectData.target_lgbtiq || 0,
+        target_other: projectData.target_other || 0,
+        target_female: projectData.target_female || 0,
+        target_male: projectData.target_male || 0,
+        target_total: projectData.target_total || 0,
         visibility: projectData.visibility || 'public',
       },
       faramErrors: {},
@@ -339,24 +364,24 @@ class ProjectForm extends React.PureComponent {
     return { status: '0' };
   })
 
-  getTargetedTotalFaramValue = memoize((male, female, other) => {
-    if (isFalsy(male) && isFalsy(female) && isFalsy(other)) {
-      return {};
+  getSubtotalFaramValue = memoize((key, age_00_05, age_06_12, age_13_17, age_18_29, age_30_39, age_40_49, age_50_59, age_60_69, age_70_79, age_80_plus) => {
+    if (isFalsy(age_00_05) && isFalsy(age_06_12) && isFalsy(age_13_17) && isFalsy(age_18_29) && isFalsy(age_30_39) && isFalsy(age_40_49) && isFalsy(age_50_59) && isFalsy(age_60_69) && isFalsy(age_70_79) && isFalsy(age_80_plus)) {
+        return {};
     }
 
-    return {
-      target_total: (+male || 0) + (+female || 0) + (+other || 0),
-    };
+    let total_object = {};
+    total_object[key] = (+age_00_05 || 0) + (+age_06_12 || 0) + (+age_13_17 || 0) + (+age_18_29 || 0) + (+age_30_39 || 0) + (+age_40_49 || 0) + (+age_50_59 || 0) + (+age_60_69 || 0) + (+age_70_79 || 0) + (+age_80_plus || 0);
+    return total_object;
   })
 
-  getReachedTotalFaramValue = memoize((male, female, other) => {
-    if (isFalsy(male) && isFalsy(female) && isFalsy(other)) {
+  getTotalFaramValue = memoize((key, male, female, lgbtiq, other) => {
+    if (isFalsy(male) && isFalsy(female) && isFalsy(lgbtiq) && isFalsy(other)) {
       return {};
     }
 
-    return {
-      reached_total: (+male || 0) + (+female || 0) + (+other || 0),
-    };
+    let total_object = {};
+    total_object[key] = (+male || 0) + (+female || 0) + (+lgbtiq || 0) + (+other || 0);
+    return total_object;
   })
 
   handleFaramChange = (faramValues, faramErrors) => {
@@ -365,13 +390,25 @@ class ProjectForm extends React.PureComponent {
 
     const extraFaramErrors = validateDate(faramValues.start_date, faramValues.end_date);
     const autoProjectStatus = this.getProjectStatusFaramValue(faramValues.start_date, faramValues.is_project_completed);
-    const autoTargetedTotal = this.getTargetedTotalFaramValue(faramValues.target_male, faramValues.target_female, faramValues.target_other);
-    const autoReachedTotal = this.getReachedTotalFaramValue(faramValues.reached_male, faramValues.reached_female, faramValues.reached_other);
+    const autoTargetedMaleTotal = this.getSubtotalFaramValue('target_male', faramValues.target_male_00_05, faramValues.target_male_06_12, faramValues.target_male_13_17, faramValues.target_male_18_29, faramValues.target_male_30_39, faramValues.target_male_40_49, faramValues.target_male_50_59, faramValues.target_male_60_69, faramValues.target_male_70_79, faramValues.target_male_80_plus);
+    const autoTargetedFemaleTotal = this.getSubtotalFaramValue('target_female', faramValues.target_female_00_05, faramValues.target_female_06_12, faramValues.target_female_13_17, faramValues.target_female_18_29, faramValues.target_female_30_39, faramValues.target_female_40_49, faramValues.target_female_50_59, faramValues.target_female_60_69, faramValues.target_female_70_79, faramValues.target_female_80_plus);
+    const autoTargetedLGBTIQTotal = this.getSubtotalFaramValue('target_lgbtiq', faramValues.target_lgbtiq_00_05, faramValues.target_lgbtiq_06_12, faramValues.target_lgbtiq_13_17, faramValues.target_lgbtiq_18_29, faramValues.target_lgbtiq_30_39, faramValues.target_lgbtiq_40_49, faramValues.target_lgbtiq_50_59, faramValues.target_lgbtiq_60_69, faramValues.target_lgbtiq_70_79, faramValues.target_lgbtiq_80_plus);
+    const autoTargetedTotal = this.getTotalFaramValue('target_total', autoTargetedMaleTotal.target_male, autoTargetedFemaleTotal.target_female, autoTargetedLGBTIQTotal.target_lgbtiq, faramValues.target_other);
+    const autoReachedMaleTotal = this.getSubtotalFaramValue('reached_male', faramValues.reached_male_00_05, faramValues.reached_male_06_12, faramValues.reached_male_13_17, faramValues.reached_male_18_29, faramValues.reached_male_30_39, faramValues.reached_male_40_49, faramValues.reached_male_50_59, faramValues.reached_male_60_69, faramValues.reached_male_70_79, faramValues.reached_male_80_plus);
+    const autoReachedFemaleTotal = this.getSubtotalFaramValue('reached_female', faramValues.reached_female_00_05, faramValues.reached_female_06_12, faramValues.reached_female_13_17, faramValues.reached_female_18_29, faramValues.reached_female_30_39, faramValues.reached_female_40_49, faramValues.reached_female_50_59, faramValues.reached_female_60_69, faramValues.reached_female_70_79, faramValues.reached_female_80_plus);
+    const autoReachedLGBTIQTotal = this.getSubtotalFaramValue('reached_lgbtiq', faramValues.reached_lgbtiq_00_05, faramValues.reached_lgbtiq_06_12, faramValues.reached_lgbtiq_13_17, faramValues.reached_lgbtiq_18_29, faramValues.reached_lgbtiq_30_39, faramValues.reached_lgbtiq_40_49, faramValues.reached_lgbtiq_50_59, faramValues.reached_lgbtiq_60_69, faramValues.reached_lgbtiq_70_79, faramValues.reached_lgbtiq_80_plus);
+    const autoReachedTotal = this.getTotalFaramValue('reached_total', autoReachedMaleTotal.reached_male, autoReachedFemaleTotal.reached_female, autoReachedLGBTIQTotal.reached_lgbtiq, faramValues.reached_other);
 
     let newFaramValues = {
       ...faramValues,
       ...autoProjectStatus,
+      ...autoTargetedMaleTotal,
+      ...autoTargetedFemaleTotal,
+      ...autoTargetedLGBTIQTotal,
       ...autoTargetedTotal,
+      ...autoReachedMaleTotal,
+      ...autoReachedFemaleTotal,
+      ...autoReachedLGBTIQTotal,
       ...autoReachedTotal,
     };
 
@@ -473,9 +510,25 @@ class ProjectForm extends React.PureComponent {
     return schema;
   });
 
-  getFilteredSecondarySectorOptions = memoize((sector) => (
-    secondarySectorOptions.filter(d => d.value !== sector)
-  ))
+//   getFilteredSecondarySectorOptions = memoize((sector) => (
+//     secondarySectorOptions.filter(d => d.value !== sector)
+//   ));
+
+  getFilteredAlternateSecondarySectorOptions = memoize((sector) => (
+    alternateSecondarySectorOptions.filter(d => d.value !== sector)
+  ));
+
+  getFilteredSubactivityOptions = memoize((activity) => (
+    activity >= 0 ? activityOptions[activity].subactivityOptions : defaultSubactivityOptions
+  ));
+
+  getFilteredDistrictOptions = memoize((province) => (
+    province >= 0 ? provinceOptions[province].districtOptions : defaultDistrictOptions
+  ));
+
+  getFilteredMunicipalityOptions = memoize((province, district) => (
+    province >= 0 && district >= 0 ? provinceOptions[province].districtOptions[district].municipalityOptions : defaultMunicipalityOptions
+  ));
 
   handleSelectAllDistrictButtonClick = () => {
     const { districts } = this.props;
@@ -548,8 +601,8 @@ class ProjectForm extends React.PureComponent {
       shouldShowCurrentOperation ||
       shouldShowCurrentEmergencyOperation;
     const shouldDisableDisasterType = String(faramValues.operation_type) === '1';
-    const isReachedTotalRequired = String(faramValues.status) === '2' && !isBudgetAndTotalNotRequired;
-    const isTargetTotalRequired = !isBudgetAndTotalNotRequired;
+
+    const shouldShowMunicipalityWard = faramValues.where_district >= 0;
 
     const schema = this.getSchema(
       faramValues.operation_type,
@@ -560,7 +613,12 @@ class ProjectForm extends React.PureComponent {
 
     const shouldDisableTotalTarget = !isFalsy(faramValues.target_male) || !isFalsy(faramValues.target_female) || !isFalsy(faramValues.target_other);
     const shouldDisableTotalReached = !isFalsy(faramValues.reached_male) || !isFalsy(faramValues.reached_female) || !isFalsy(faramValues.reached_other);
-    const filteredSecondarySectorOptions = this.getFilteredSecondarySectorOptions(faramValues.sector);
+    // const filteredSecondarySectorOptions = this.getFilteredSecondarySectorOptions(faramValues.sector);
+    const filteredAlternateSecondarySectorOptions = this.getFilteredAlternateSecondarySectorOptions(faramValues.sector);
+    const filteredSubactivityOptions = this.getFilteredSubactivityOptions(faramValues.activity);
+
+    const filteredDistrictOptions = this.getFilteredDistrictOptions(faramValues.where_province);
+    const filteredMunicipalityOptions = this.getFilteredMunicipalityOptions(faramValues.where_province, faramValues.where_district);
 
     const hasNonFieldErrors = projectForm.error;
     const { strings } = this.context;
@@ -593,6 +651,30 @@ class ProjectForm extends React.PureComponent {
           </InputSection>
 
           <InputSection
+            title={strings.projectFormOrganizationalUnit}
+            helpText={strings.projectFormOrganizationalUnitHelpText}
+            tooltip={strings.projectFormOrganizationalUnitTooltip}
+          >
+            <SelectInput
+              faramElementName='organizational_unit'
+              className='project-form-select'
+              options={organizationalUnitOptions}
+            />
+          </InputSection>
+
+          <InputSection
+            title={strings.projectFormPartner}
+            helpText={strings.projectFormPartnerHelpText}
+            tooltip={strings.projectFormPartnerTooltip}
+          >
+            <SelectInput
+              faramElementName='partner'
+              className='project-form-select'
+              options={partnerOptions}
+            />
+          </InputSection>
+
+          <InputSection
             className='multi-input-section'
             title={strings.projectFormCountryTitle}
             helpText={strings.projectFormCountryHelpText}
@@ -604,7 +686,7 @@ class ProjectForm extends React.PureComponent {
               className='project-form-select'
               options={countryOptions}
               clearable={false}
-              disabled={shouldDisableCountryInput}
+              disabled={true || shouldDisableCountryInput}
               placeholder={fetchingCountries ? strings.projectFormCountryPlaceholder : undefined}
             />
             <div className="district-select-container">
@@ -630,7 +712,7 @@ class ProjectForm extends React.PureComponent {
 
           <InputSection
             className='multi-input-section'
-            title={strings.projectFormTypeOfOperation}
+            title={strings.projectFormProgrammeType}
             tooltip={strings.projectFormTypeOfOperationTooltip}
             helpText={
               <React.Fragment>
@@ -731,14 +813,150 @@ class ProjectForm extends React.PureComponent {
               faramElementName='primary_sector'
               className='project-form-select'
               label={strings.projectFormPrimarySectorSelect}
-              options={sectorOptions}
+              options={alternateSectorOptions}
             />
             <SelectInput
               faramElementName='secondary_sectors'
               className='project-form-select'
               label={strings.projectFormSecondarySectorLabel}
-              options={filteredSecondarySectorOptions}
+              options={filteredAlternateSecondarySectorOptions}
               multi
+            />
+          </InputSection>
+
+          <InputSection
+            className='multi-input-section'
+            title={strings.projectFormActvityTitle}
+            helpText={
+                <React.Fragment>
+                <div>
+                    <b>
+                    {strings.projectFormActivity}
+                    </b>
+                    {strings.projectFormFormActivityText}
+                </div>
+                <div>
+                    <b>
+                    {strings.projectFormSubactivity}
+                    </b>
+                    {strings.projectFormSubactivityText}
+                </div>
+                </React.Fragment>
+            }
+            tooltip={strings.projectFormActivityTooltip}
+            >
+            <SelectInput
+                faramElementName='activity'
+                className='project-form-select'
+                label={strings.projectFormActivityLabel}
+                options={activityOptions}
+            />
+            <SelectInput
+                faramElementName='subactivity'
+                className='project-form-select'
+                label={strings.projectFormSubactivityLabel}
+                options={filteredSubactivityOptions}
+            />
+          </InputSection>
+
+          <InputSection
+            className='multi-input-section'
+            title={strings.projectFormUnitsTitle}
+            helpText={
+                <React.Fragment>
+                <div>
+                    <b>
+                    {strings.projectFormUnitsMeasurementMetric}
+                    </b>
+                    {strings.projectFormUnitsMeasurementMetricText}
+                </div>
+                <div>
+                    <b>
+                    {strings.projectFormUnitsQuantity}
+                    </b>
+                    {strings.projectFormUnitsQuantityTest}
+                </div>
+                </React.Fragment>
+            }
+            tooltip={strings.projectFormUnitsTooltip}
+            >
+            <SelectInput
+                faramElementName='units_measurement_metric'
+                className='project-form-select'
+                label={strings.projectFormUnitsMeasurementMetricLabel}
+                options={unitsOfMeasurementOptions}
+            />
+            <NumberInput
+                label={strings.projectFormUnitsQuantityLabel}
+                faramElementName='units_quantity'
+            />
+          </InputSection>
+
+          <InputSection
+            className='multi-input-section'
+            title={strings.projectFormProvinceDistrict}
+            helpText={
+                <React.Fragment>
+                <div>
+                    {strings.projectFormProvinceDistrictText}
+                </div>
+                </React.Fragment>
+            }
+            >
+            <SelectInput
+                faramElementName='where_province'
+                className='project-form-select'
+                label={strings.projectFormWhereProvinceLabel}
+                options={provinceOptions}
+            />
+            <SelectInput
+                faramElementName='where_district'
+                className='project-form-select'
+                label={strings.projectFormWhereDistrictTitle}
+                options={filteredDistrictOptions}
+            />
+          </InputSection>
+
+          { shouldShowMunicipalityWard && (
+          <InputSection
+            className='multi-input-section'
+            title={strings.projectFormMunicipalityWardTitle}
+            helpText={
+                <React.Fragment>
+                <div>
+                    {strings.projectFormMunicipalityWardText}
+                </div>
+                </React.Fragment>
+            }
+            >
+            <SelectInput
+                faramElementName='where_municipality'
+                className='project-form-select'
+                label={strings.projectFormWhereMunicipalityLabel}
+                options={filteredMunicipalityOptions}
+            />
+            <NumberInput
+                label={strings.projectFormWhereWardLabel}
+                faramElementName='where_ward'
+            />
+          </InputSection>
+          )}
+
+          <InputSection
+            className='multi-input-section'
+            title={strings.projectFormDeliveryPointTitle}
+            helpText={strings.projectFormDeliveryPointText}
+            tooltip={strings.projectFormDeliveryPointTooltip}
+          >
+            <SelectInput
+                faramElementName='where_delivery_service_place'
+                className='project-form-select'
+                label={strings.projectFormWhereDeliveryPointLabel}
+                options={deliveryPointOptions}
+            />
+            <TextInput
+              faramElementName='where_delivery_service_name'
+              label={strings.projectFormWhereDeliveryServiceNameLabel}
             />
           </InputSection>
 
@@ -805,55 +1023,421 @@ class ProjectForm extends React.PureComponent {
           </InputSection>
 
           <InputSection
-            className='multi-input-section'
-            title={strings.projectFormPeopleTageted}
-            helpText={strings.projectFormPeopleTagetedHelpText}
-            tooltip={strings.projectFormPeopleTagetedTooltip}
+            title={strings.projectFormBeneficiaryTypeTitle}
           >
-            <NumberInput
-              faramElementName='target_male'
-              label={strings.projectFormMale}
-            />
-            <NumberInput
-              faramElementName='target_female'
-              label={strings.projectFormFemale}
-            />
-            <NumberInput
-              faramElementName='target_other'
-              label={strings.projectFormOther}
-            />
-            <NumberInput
-              disabled={shouldDisableTotalTarget}
-              faramElementName='target_total'
-              // TODO: use translations
-              label={isTargetTotalRequired ? 'Total* ' : 'Total'}
+            <SelectInput
+                faramElementName='beneficiary_type'
+                className='project-form-select'
+                options={beneficiaryTypeOptions}
             />
           </InputSection>
 
           <InputSection
             className='multi-input-section'
-            title={strings.projectFormPeopleReached}
-            helpText={strings.projectFormPeopleReachedHelpText}
-            tooltip={strings.projectFormPeopleReachedTooltip}
+            title={strings.projectFormTargetedTotalPeople}
+            helpText={strings.projectFormTargetedTotalPeopleText}
+            tooltip={strings.projectFormTargetedTotalPeopleTooltip}
           >
             <NumberInput
-              faramElementName='reached_male'
-              label={strings.projectFormPeopleReachedMale}
+              disabled={true}
+              faramElementName='target_male'
+              label={strings.projectFormTargetedMalePeopleLabel}
             />
             <NumberInput
-              faramElementName='reached_female'
-              label={strings.projectFormPeopleReachedFemale}
+              disabled={true}
+              faramElementName='target_female'
+              label={strings.projectFormTargetedFemalePeopleLabel}
             />
             <NumberInput
-              faramElementName='reached_other'
-              label={strings.projectFormPeopleReachedOther}
+              disabled={true}
+              faramElementName='target_lgbtiq'
+              label={strings.projectFormTargetedLGBTIQPeopleLabel}
             />
             <NumberInput
-              disabled={shouldDisableTotalReached}
-              faramElementName='reached_total'
-              label={isReachedTotalRequired ? 'Total* ' : 'Total'}
+              disabled={true}
+              faramElementName='target_other'
+              label={strings.projectFormTargetedOtherPeopleLabel}
+            />
+            <NumberInput
+              disabled={true || shouldDisableTotalTarget}
+              faramElementName='target_total'
+              label={strings.projectFormTargetedTotalPeopleLabel}
             />
           </InputSection>
+
+          <InputSection
+            className='multi-input-section'
+            title={strings.projectFormTargetedLGBTIQPeople}
+            helpText={strings.projectFormTargetedLGBTIQPeopleText}
+            tooltip={strings.projectFormTargetedLGBTIQPeopleTooltip}
+          >
+            <NumberInput
+              faramElementName='target_lgbtiq_00_05'
+              label={strings.projectFormAge0005}
+            />
+            <NumberInput
+              faramElementName='target_lgbtiq_06_12'
+              label={strings.projectFormAge0612}
+            />
+            <NumberInput
+              faramElementName='target_lgbtiq_13_17'
+              label={strings.projectFormAge1317}
+            />
+            <NumberInput
+              faramElementName='target_lgbtiq_18_29'
+              label={strings.projectFormAge1829}
+            />
+            <NumberInput
+              faramElementName='target_lgbtiq_30_39'
+              label={strings.projectFormAge3039}
+            />
+            <NumberInput
+              faramElementName='target_lgbtiq_40_49'
+              label={strings.projectFormAge4049}
+            />
+            <NumberInput
+              faramElementName='target_lgbtiq_50_59'
+              label={strings.projectFormAge5059}
+            />
+            <NumberInput
+              faramElementName='target_lgbtiq_60_69'
+              label={strings.projectFormAge6069}
+            />
+            <NumberInput
+              faramElementName='target_lgbtiq_70_79'
+              label={strings.projectFormAge7079}
+            />
+            <NumberInput
+              faramElementName='target_lgbtiq_80_plus'
+              label={strings.projectFormAge80Plus}
+            />
+          </InputSection>
+
+          <InputSection
+            className='multi-input-section'
+            title={strings.projectFormTargetedFemalePeople}
+            helpText={strings.projectFormTargetedFemalePeopleText}
+            tooltip={strings.projectFormTargetedFemalePeopleTooltip}
+          >
+            <NumberInput
+              faramElementName='target_female_00_05'
+              label={strings.projectFormAge0005}
+            />
+            <NumberInput
+              faramElementName='target_female_06_12'
+              label={strings.projectFormAge0612}
+            />
+            <NumberInput
+              faramElementName='target_female_13_17'
+              label={strings.projectFormAge1317}
+            />
+            <NumberInput
+              faramElementName='target_female_18_29'
+              label={strings.projectFormAge1829}
+            />
+            <NumberInput
+              faramElementName='target_female_30_39'
+              label={strings.projectFormAge3039}
+            />
+            <NumberInput
+              faramElementName='target_female_40_49'
+              label={strings.projectFormAge4049}
+            />
+            <NumberInput
+              faramElementName='target_female_50_59'
+              label={strings.projectFormAge5059}
+            />
+            <NumberInput
+              faramElementName='target_female_60_69'
+              label={strings.projectFormAge6069}
+            />
+            <NumberInput
+              faramElementName='target_female_70_79'
+              label={strings.projectFormAge7079}
+            />
+            <NumberInput
+              faramElementName='target_female_80_plus'
+              label={strings.projectFormAge80Plus}
+            />
+          </InputSection>
+
+          <InputSection
+            className='multi-input-section'
+            title={strings.projectFormTargetedMalePeople}
+            helpText={strings.projectFormTargetedMalePeopleText}
+            tooltip={strings.projectFormTargetedMalePeopleTooltip}
+          >
+            <NumberInput
+              faramElementName='target_male_00_05'
+              label={strings.projectFormAge0005}
+            />
+            <NumberInput
+              faramElementName='target_male_06_12'
+              label={strings.projectFormAge0612}
+            />
+            <NumberInput
+              faramElementName='target_male_13_17'
+              label={strings.projectFormAge1317}
+            />
+            <NumberInput
+              faramElementName='target_male_18_29'
+              label={strings.projectFormAge1829}
+            />
+            <NumberInput
+              faramElementName='target_male_30_39'
+              label={strings.projectFormAge3039}
+            />
+            <NumberInput
+              faramElementName='target_male_40_49'
+              label={strings.projectFormAge4049}
+            />
+            <NumberInput
+              faramElementName='target_male_50_59'
+              label={strings.projectFormAge5059}
+            />
+            <NumberInput
+              faramElementName='target_male_60_69'
+              label={strings.projectFormAge6069}
+            />
+            <NumberInput
+              faramElementName='target_male_70_79'
+              label={strings.projectFormAge7079}
+            />
+            <NumberInput
+              faramElementName='target_male_80_plus'
+              label={strings.projectFormAge80Plus}
+            />
+          </InputSection>
+
+          <InputSection
+            title={strings.projectFormTargetedOtherPeople}
+            helpText={strings.projectFormTargetedOtherPeopleText}
+            tooltip={strings.projectFormTargetedOtherPeopleTooltip}
+          >
+            <NumberInput
+                faramElementName='target_other'
+            />
+          </InputSection>
+
+          <InputSection
+            className='multi-input-section'
+            title={strings.projectFormTargetedVulnerable}
+            helpText={strings.projectFormTargetedVulnerableText}
+            tooltip={strings.projectFormTargetedVulnerableTooltip}
+          >
+            <NumberInput
+                faramElementName='target_pregnant_women'
+                label={strings.projectFormTargetedPregnantWomenLabel}
+            />
+            <NumberInput
+                faramElementName='target_people_with_disability'
+                label={strings.projectFormTargetedPeopleWithDisabilityLabel}
+            />
+          </InputSection>
+
+          <InputSection
+            className='multi-input-section'
+            title={strings.projectFormReachedTotalPeople}
+            helpText={strings.projectFormReachedTotalPeopleText}
+            tooltip={strings.projectFormReachedTotalPeopleTooltip}
+          >
+            <NumberInput
+              disabled={true}
+              faramElementName='reached_male'
+              label={strings.projectFormReachedMalePeopleLabel}
+            />
+            <NumberInput
+              disabled={true}
+              faramElementName='reached_female'
+              label={strings.projectFormReachedFemalePeopleLabel}
+            />
+            <NumberInput
+              disabled={true}
+              faramElementName='reached_lgbtiq'
+              label={strings.projectFormReachedLGBTIQPeopleLabel}
+            />
+            <NumberInput
+              disabled={true}
+              faramElementName='reached_other'
+              label={strings.projectFormReachedOtherPeopleLabel}
+            />
+            <NumberInput
+              disabled={true || shouldDisableTotalReached}
+              faramElementName='reached_total'
+              label={strings.projectFormReachedTotalPeopleLabel}
+            />
+          </InputSection>
+
+          <InputSection
+            className='multi-input-section'
+            title={strings.projectFormReachedLGBTIQPeople}
+            helpText={strings.projectFormReachedLGBTIQPeopleText}
+            tooltip={strings.projectFormReachedLGBTIQPeopleTooltip}
+          >
+            <NumberInput
+              faramElementName='reached_lgbtiq_00_05'
+              label={strings.projectFormAge0005}
+            />
+            <NumberInput
+              faramElementName='reached_lgbtiq_06_12'
+              label={strings.projectFormAge0612}
+            />
+            <NumberInput
+              faramElementName='reached_lgbtiq_13_17'
+              label={strings.projectFormAge1317}
+            />
+            <NumberInput
+              faramElementName='reached_lgbtiq_18_29'
+              label={strings.projectFormAge1829}
+            />
+            <NumberInput
+              faramElementName='reached_lgbtiq_30_39'
+              label={strings.projectFormAge3039}
+            />
+            <NumberInput
+              faramElementName='reached_lgbtiq_40_49'
+              label={strings.projectFormAge4049}
+            />
+            <NumberInput
+              faramElementName='reached_lgbtiq_50_59'
+              label={strings.projectFormAge5059}
+            />
+            <NumberInput
+              faramElementName='reached_lgbtiq_60_69'
+              label={strings.projectFormAge6069}
+            />
+            <NumberInput
+              faramElementName='reached_lgbtiq_70_79'
+              label={strings.projectFormAge7079}
+            />
+            <NumberInput
+              faramElementName='reached_lgbtiq_80_plus'
+              label={strings.projectFormAge80Plus}
+            />
+          </InputSection>
+
+          <InputSection
+            className='multi-input-section'
+            title={strings.projectFormReachedFemalePeople}
+            helpText={strings.projectFormReachedFemalePeopleText}
+            tooltip={strings.projectFormReachedFemalePeopleTooltip}
+          >
+            <NumberInput
+              faramElementName='reached_female_00_05'
+              label={strings.projectFormAge0005}
+            />
+            <NumberInput
+              faramElementName='reached_female_06_12'
+              label={strings.projectFormAge0612}
+            />
+            <NumberInput
+              faramElementName='reached_female_13_17'
+              label={strings.projectFormAge1317}
+            />
+            <NumberInput
+              faramElementName='reached_female_18_29'
+              label={strings.projectFormAge1829}
+            />
+            <NumberInput
+              faramElementName='reached_female_30_39'
+              label={strings.projectFormAge3039}
+            />
+            <NumberInput
+              faramElementName='reached_female_40_49'
+              label={strings.projectFormAge4049}
+            />
+            <NumberInput
+              faramElementName='reached_female_50_59'
+              label={strings.projectFormAge5059}
+            />
+            <NumberInput
+              faramElementName='reached_female_60_69'
+              label={strings.projectFormAge6069}
+            />
+            <NumberInput
+              faramElementName='reached_female_70_79'
+              label={strings.projectFormAge7079}
+            />
+            <NumberInput
+              faramElementName='reached_female_80_plus'
+              label={strings.projectFormAge80Plus}
+            />
+          </InputSection>
+
+          <InputSection
+            className='multi-input-section'
+            title={strings.projectFormReachedMalePeople}
+            helpText={strings.projectFormReachedMalePeopleText}
+            tooltip={strings.projectFormReachedMalePeopleTooltip}
+          >
+            <NumberInput
+              faramElementName='reached_male_00_05'
+              label={strings.projectFormAge0005}
+            />
+            <NumberInput
+              faramElementName='reached_male_06_12'
+              label={strings.projectFormAge0612}
+            />
+            <NumberInput
+              faramElementName='reached_male_13_17'
+              label={strings.projectFormAge1317}
+            />
+            <NumberInput
+              faramElementName='reached_male_18_29'
+              label={strings.projectFormAge1829}
+            />
+            <NumberInput
+              faramElementName='reached_male_30_39'
+              label={strings.projectFormAge3039}
+            />
+            <NumberInput
+              faramElementName='reached_male_40_49'
+              label={strings.projectFormAge4049}
+            />
+            <NumberInput
+              faramElementName='reached_male_50_59'
+              label={strings.projectFormAge5059}
+            />
+            <NumberInput
+              faramElementName='reached_male_60_69'
+              label={strings.projectFormAge6069}
+            />
+            <NumberInput
+              faramElementName='reached_male_70_79'
+              label={strings.projectFormAge7079}
+            />
+            <NumberInput
+              faramElementName='reached_male_80_plus'
+              label={strings.projectFormAge80Plus}
+            />
+          </InputSection>
+
+          <InputSection
+            title={strings.projectFormReachedOtherPeople}
+            helpText={strings.projectFormReachedOtherPeopleText}
+            tooltip={strings.projectFormReachedOtherPeopleTooltip}
+          >
+            <NumberInput
+                faramElementName='reached_other'
+            />
+          </InputSection>
+
+          <InputSection
+            className='multi-input-section'
+            title={strings.projectFormReachedVulnerable}
+            helpText={strings.projectFormReachedVulnerableText}
+            tooltip={strings.projectFormReachedVulnerableTooltip}
+          >
+            <NumberInput
+                faramElementName='reached_pregnant_women'
+                label={strings.projectFormReachedPregnantWomenLabel}
+            />
+            <NumberInput
+                faramElementName='reached_people_with_disability'
+                label={strings.projectFormReachedPeopleWithDisabilityLabel}
+            />
+          </InputSection>
+
           <InputSection
             title={strings.projectFormProjectVisibility}
           >
