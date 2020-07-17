@@ -63,7 +63,7 @@ export const activityOptions = [
     },
     {
         value: 3,
-        label: "Distribute personal protective equipment to COVID-19 responders ",
+        label: "Distribute personal protective equipment to COVID-19 responders",
         subactivityOptions: [
             {
                 value: 0,
@@ -137,7 +137,7 @@ export const activityOptions = [
             },
             {
                 value: 6,
-                label: "Hand Sanitizer "
+                label: "Hand Sanitizer"
             },
             {
                 value: 7,
@@ -197,7 +197,7 @@ export const activityOptions = [
     },
     {
         value: 8,
-        label: "Conduct awareness raising activities on COVID-19",
+        label: "Conduct COVID-19  awareness activities for community (risk communication)",
         subactivityOptions: [
             {
                 value: 0,
@@ -213,13 +213,17 @@ export const activityOptions = [
             },
             {
                 value: 3,
+                label: "Door to door visit"
+            },
+            {
+                value: 4,
                 label: "Other"
             }
         ]
     },
     {
         value: 9,
-        label: "Conduct RCEC (Red Cross Emergency Clinic)/ ECV (Epidemic control for Volunteers) training, orientation and mobilization",
+        label: "Conduct Epidemic Control for Volunteers (ECV) training, orientation and mobilization",
         subactivityOptions: [
             {
                 value: 0,
@@ -264,6 +268,160 @@ export const activityOptions = [
             {
                 value: 1,
                 label: "Orientation"
+            }
+        ]
+    },
+    {
+        value: 12,
+        label: "Broadcast radio programs and Public Service Announcement",
+        subactivityOptions: [
+            {
+                value: 0,
+                label: "COVID-19 related NRCS radio program"
+            }
+        ]
+    },
+    {
+        value: 13,
+        label: "COVID-19 preparedness and response operation assessment, surveys, evaluation",
+        subactivityOptions: [
+            {
+                value: 0,
+                label: "Evaluation"
+            }
+        ]
+    },
+    {
+        value: 14,
+        label: "Construction, repair and maintenance activity",
+        subactivityOptions: [
+            {
+                value: 0,
+                label: "Construction of hand washing station"
+            },
+            {
+                value: 1,
+                label: "Water supply connection"
+            }
+        ]
+    },
+    {
+        value: 15,
+        label: "Demonstration on hand washing activity",
+        subactivityOptions: [
+            {
+                value: 0,
+                label: "Demonstration on hand washing"
+            }
+        ]
+    },
+    {
+        value: 16,
+        label: "Distribute WASH materials",
+        subactivityOptions: [
+            {
+                value: 0,
+                label: "Soap"
+            },
+            {
+                value: 1,
+                label: "Hand Sanitizer"
+            },
+            {
+                value: 2,
+                label: "Bucket"
+            },
+            {
+                value: 3,
+                label: "Hygine Kit"
+            },
+            {
+                value: 4,
+                label: "Mug"
+            }
+        ]
+    },
+    {
+        value: 17,
+        label: "Distribute information,education,communication materials",
+        subactivityOptions: [
+            {
+                value: 0,
+                label: "Leaflet/Pamphlets(Health)"
+            }
+        ]
+    },
+    {
+        value: 18,
+        label: "Distribute personal protective equipment to COVID-19 responders",
+        subactivityOptions: [
+            {
+                value: 0,
+                label: "Full Body PPE Set"
+            },
+            {
+                value: 1,
+                label: "N95 Mask"
+            },
+            {
+                value: 2,
+                label: "Mask"
+            }
+        ]
+    },
+    {
+        value: 19,
+        label: "Provide non-food items to the families most affected by COVID-19",
+        subactivityOptions: [
+            {
+                value: 0,
+                label: "Blankets"
+            },
+            {
+                value: 1,
+                label: "Tarpaulin"
+            }
+        ]
+    },
+    {
+        value: 20,
+        label: "Provide shelter and non-food relief items to the families /people  affected by COVID-19",
+        subactivityOptions: [
+            {
+                value: 0,
+                label: "Blanket"
+            },
+            {
+                value: 1,
+                label: "Tarpaulin"
+            },
+            {
+                value: 2,
+                label: "Kitchen Set"
+            }
+        ]
+    },
+    {
+        value: 21,
+        label: "Staff and volunteer mobilization in COVID-19 preparedness and response operation (for all sectors)",
+        subactivityOptions: [
+            {
+                value: 0,
+                label: "Volunteer"
+            },
+            {
+                value: 1,
+                label: "Staff"
+            }
+        ]
+    },
+    {
+        value: 22,
+        label: "Support to establish/upgrade/expand quarantine facilities (in-kind and cash support as per local need and context)",
+        subactivityOptions: [
+            {
+                value: 0,
+                label: "In- kind support (materials)"
             }
         ]
     }
@@ -507,7 +665,40 @@ export const provinceOptions = [
             {
                 value: 7,
                 label: 'Panchthar',
-                municipalityOptions: []
+                municipalityOptions: [
+                    {
+                        value: 0,
+                        label: 'Falelung'
+                    },
+                    {
+                        value: 1,
+                        label: 'Falgunanda'
+                    },
+                    {
+                        value: 2,
+                        label: 'Hilihang'
+                    },
+                    {
+                        value: 3,
+                        label: 'Kummayak'
+                    },
+                    {
+                        value: 4,
+                        label: 'Miklajung'
+                    },
+                    {
+                        value: 5,
+                        label: 'Phidim'
+                    },
+                    {
+                        value: 6,
+                        label: 'Tumbewa'
+                    },
+                    {
+                        value: 7,
+                        label: 'Yangwarak'
+                    }
+                ]
             },
             {
                 value: 8,
@@ -517,7 +708,40 @@ export const provinceOptions = [
             {
                 value: 9,
                 label: 'Solukhumbu',
-                municipalityOptions: []
+                municipalityOptions: [
+                    {
+                        value: 0,
+                        label: 'Khumbupasanglahmu'
+                    },
+                    {
+                        value: 1,
+                        label: 'Likhupike'
+                    },
+                    {
+                        value: 2,
+                        label: 'Mahakulung'
+                    },
+                    {
+                        value: 3,
+                        label: 'Mapyadudhkoshi'
+                    },
+                    {
+                        value: 4,
+                        label: 'Nechasalyan'
+                    },
+                    {
+                        value: 5,
+                        label: 'Solududhakunda'
+                    },
+                    {
+                        value: 6,
+                        label: 'Sotang'
+                    },
+                    {
+                        value: 7,
+                        label: 'Thulung dudhkoshi'
+                    }
+                ]
             },
             {
                 value: 10,
@@ -527,7 +751,44 @@ export const provinceOptions = [
             {
                 value: 11,
                 label: 'Taplejung',
-                municipalityOptions: []
+                municipalityOptions: [
+                    {
+                        value: 0,
+                        label: 'Aathrai Tribeni'
+                    },
+                    {
+                        value: 1,
+                        label: 'Maiwakhola'
+                    },
+                    {
+                        value: 2,
+                        label: 'Meringden'
+                    },
+                    {
+                        value: 3,
+                        label: 'Mikwakhola'
+                    },
+                    {
+                        value: 4,
+                        label: 'Pathivara Yangwarak'
+                    },
+                    {
+                        value: 5,
+                        label: 'Phaktanglung'
+                    },
+                    {
+                        value: 6,
+                        label: 'Phungling'
+                    },
+                    {
+                        value: 7,
+                        label: 'Sidingba'
+                    },
+                    {
+                        value: 8,
+                        label: 'Sirijangha'
+                    }
+                ]
             },
             {
                 value: 12,
@@ -595,6 +856,284 @@ export const provinceOptions = [
             {
                 value: 1,
                 label: 'Chitawan',
+                municipalityOptions: [
+                    {
+                        value: 0,
+                        label: 'Bharatpur'
+                    },
+                    {
+                        value: 1,
+                        label: 'Ichchhyakamana'
+                    }
+                ]
+            },
+            {
+                value: 2,
+                label: 'Dhading',
+                municipalityOptions: [
+                    {
+                        value: 0,
+                        label: 'Benighat Rorang'
+                    },
+                    {
+                        value: 1,
+                        label: 'Dhunibesi'
+                    },
+                    {
+                        value: 2,
+                        label: 'Gajuri'
+                    },
+                    {
+                        value: 3,
+                        label: 'Galchi'
+                    },
+                    {
+                        value: 4,
+                        label: 'Gangajamuna'
+                    },
+                    {
+                        value: 5,
+                        label: 'Jwalamukhi'
+                    },
+                    {
+                        value: 6,
+                        label: 'Khaniyabash'
+                    },
+                    {
+                        value: 7,
+                        label: 'Netrawati'
+                    },
+                    {
+                        value: 8,
+                        label: 'Nilakantha'
+                    },
+                    {
+                        value: 9,
+                        label: 'Rubi Valley'
+                    },
+                    {
+                        value: 10,
+                        label: 'Siddhalek'
+                    },
+                    {
+                        value: 11,
+                        label: 'Thakre'
+                    },
+                    {
+                        value: 12,
+                        label: 'Tripura Sundari'
+                    }
+                ]
+            },
+            {
+                value: 3,
+                label: 'Dolakha',
+                municipalityOptions: [
+                    {
+                        value: 0,
+                        label: 'Bharatpur'
+                    },
+                    {
+                        value: 1,
+                        label: 'Ichchhyakamana'
+                    }
+                ]
+            },
+            {
+                value: 4,
+                label: 'Kathmandu',
+                municipalityOptions: [
+                    {
+                        value: 0,
+                        label: 'Bharatpur'
+                    },
+                    {
+                        value: 1,
+                        label: 'Ichchhyakamana'
+                    }
+                ]
+            },
+            {
+                value: 5,
+                label: 'Kavrepalanchok',
+                municipalityOptions: [
+                    {
+                        value: 0,
+                        label: 'Bharatpur'
+                    },
+                    {
+                        value: 1,
+                        label: 'Ichchhyakamana'
+                    }
+                ]
+            },
+            {
+                value: 6,
+                label: 'Lalitpur',
+                municipalityOptions: [
+                    {
+                        value: 0,
+                        label: 'Bharatpur'
+                    },
+                    {
+                        value: 1,
+                        label: 'Ichchhyakamana'
+                    }
+                ]
+            },
+            {
+                value: 7,
+                label: 'Makawanpur',
+                municipalityOptions: [
+                    {
+                        value: 0,
+                        label: 'Bharatpur'
+                    },
+                    {
+                        value: 1,
+                        label: 'Ichchhyakamana'
+                    }
+                ]
+            },
+            {
+                value: 8,
+                label: 'Nuwakot',
+                municipalityOptions: [
+                    {
+                        value: 0,
+                        label: 'Belkotgadhi'
+                    },
+                    {
+                        value: 1,
+                        label: 'Bidur'
+                    },
+                    {
+                        value: 2,
+                        label: 'Dupcheshwar'
+                    },
+                    {
+                        value: 3,
+                        label: 'Kakani'
+                    },
+                    {
+                        value: 4,
+                        label: 'Kispang'
+                    },
+                    {
+                        value: 5,
+                        label: 'Likhu'
+                    },
+                    {
+                        value: 6,
+                        label: 'Meghang'
+                    },
+                    {
+                        value: 7,
+                        label: 'Panchakanya'
+                    },
+                    {
+                        value: 8,
+                        label: 'Shivapuri'
+                    },
+                    {
+                        value: 9,
+                        label: 'Suryagadhi'
+                    },
+                    {
+                        value: 10,
+                        label: 'Tadi'
+                    },
+                    {
+                        value: 11,
+                        label: 'Tarkeshwar'
+                    }
+                ]
+            },
+            {
+                value: 9,
+                label: 'Ramechhap',
+                municipalityOptions: [
+                    {
+                        value: 0,
+                        label: 'Bharatpur'
+                    },
+                    {
+                        value: 1,
+                        label: 'Ichchhyakamana'
+                    }
+                ]
+            },
+            {
+                value: 10,
+                label: 'Rasuwa',
+                municipalityOptions: [
+                    {
+                        value: 0,
+                        label: 'Gosaikunda'
+                    },
+                    {
+                        value: 1,
+                        label: 'Kalika'
+                    },
+                    {
+                        value: 2,
+                        label: 'Naukunda'
+                    },
+                    {
+                        value: 3,
+                        label: 'Parbati Kunda'
+                    },
+                    {
+                        value: 4,
+                        label: 'Uttargaya'
+                    }
+                ]
+            },
+            {
+                value: 11,
+                label: 'Sindhuli',
+                municipalityOptions: [
+                    {
+                        value: 0,
+                        label: 'Dudhouli'
+                    },
+                    {
+                        value: 1,
+                        label: 'Ghanglekh'
+                    },
+                    {
+                        value: 2,
+                        label: 'Golanjor'
+                    },
+                    {
+                        value: 3,
+                        label: 'Hariharpurgadhi'
+                    },
+                    {
+                        value: 4,
+                        label: 'Kamalamai'
+                    },
+                    {
+                        value: 5,
+                        label: 'Marin'
+                    },
+                    {
+                        value: 6,
+                        label: 'Phikkal'
+                    },
+                    {
+                        value: 7,
+                        label: 'Sunkoshi'
+                    },
+                    {
+                        value: 8,
+                        label: 'Tinpatan'
+                    }
+                ]
+            },
+            {
+                value: 12,
+                label: 'Sindhupalchok',
                 municipalityOptions: [
                     {
                         value: 0,
@@ -761,7 +1300,7 @@ export const deliveryPointOptions = [
     },
     {
         value: 3,
-        label: 'Port of Entry'
+        label: 'Port of entry'
     },
     {
         value: 4,
@@ -781,7 +1320,7 @@ export const deliveryPointOptions = [
     },
     {
         value: 8,
-        label: 'Health Service Center'
+        label: 'Health service center'
     },
     {
         value: 9,
@@ -793,7 +1332,7 @@ export const deliveryPointOptions = [
     },
     {
         value: 11,
-        label: 'Ambulance Service'
+        label: 'Ambulance service'
     },
     {
         value: 12,
@@ -828,7 +1367,7 @@ export const beneficiaryTypeOptions = [
     },
     {
         value: 2,
-        label: 'NRCS Volunteer'
+        label: 'NRCS volunteer'
     },
     {
         value: 3,
@@ -836,7 +1375,7 @@ export const beneficiaryTypeOptions = [
     },
     {
         value: 4,
-        label: 'Other Volunteer'
+        label: 'Other volunteer'
     },
     {
         value: 5,
@@ -874,7 +1413,7 @@ export const sectorList = [
   },
   {
     key: '1',
-    title: 'Water sanitation and hygiene promotion',
+    title: 'Water Sanitation and Hygiene Promotion',
     color: '#fc8d62',
     inputValue: '1',
   },
