@@ -637,7 +637,7 @@ class AdminArea extends SFPComponent {
             </div>
           </div>
         </header>
-        <section className='inpage__body'>
+        <section className='inpage__body hidden'>
           <div className='inner'>
             <KeyFiguresHeader appealsListStats={this.props.appealsListStats}/>
           </div>
