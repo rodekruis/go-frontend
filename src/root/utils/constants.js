@@ -11,7 +11,7 @@ export const organizationalUnitOptions = [
 
 export const partnerOptions = [
     { value: 0, label: "Through NRCS HQS" },
-    { value: 1, label: "Government agencies" },
+    { value: 1, label: "Government Agencies" },
     { value: 2, label: "INGO/NGO" },
     { value: 3, label: "Other" }
 ];
@@ -19,7 +19,7 @@ export const partnerOptions = [
 export const activityOptions = [
     {
         value: 0,
-        label: "Conduct training/orientation on COVID-19/ PPE and IPC measure"
+        label: "Conduct training/orientation on COVID-19 / PPE and IPC measure"
     },
     {
         value: 1,
@@ -1859,7 +1859,7 @@ export const deliveryPointOptions = [
     },
     {
         value: 3,
-        label: 'Port of entry'
+        label: 'Port of Entry'
     },
     {
         value: 4,
@@ -1879,7 +1879,7 @@ export const deliveryPointOptions = [
     },
     {
         value: 8,
-        label: 'Health service center'
+        label: 'Health Service Center'
     },
     {
         value: 9,
@@ -1891,7 +1891,7 @@ export const deliveryPointOptions = [
     },
     {
         value: 11,
-        label: 'Ambulance service'
+        label: 'Ambulance Service'
     },
     {
         value: 12,
@@ -1926,7 +1926,7 @@ export const beneficiaryTypeOptions = [
     },
     {
         value: 2,
-        label: 'NRCS volunteer'
+        label: 'NRCS Volunteer'
     },
     {
         value: 3,
@@ -1934,7 +1934,7 @@ export const beneficiaryTypeOptions = [
     },
     {
         value: 4,
-        label: 'Other volunteer'
+        label: 'Other Volunteer'
     },
     {
         value: 5,
