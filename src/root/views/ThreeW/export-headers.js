@@ -11,9 +11,41 @@ const exportHeaders = [
     modifier: r => (r.project_districts_detail || []).map(d => d.name).join(multiValueDelimiter),
   },
   {
+    title: 'Province',
+    key: 'where_province_display',
+  },
+  {
+    title: 'District',
+    key: 'where_district_display',
+  },
+  {
+    title: 'Municipality',
+    key: 'where_municipality_display',
+  },
+  {
+    title: 'Ward',
+    key: 'where_ward',
+  },
+  {
     title: 'Reporting NS',
     key: 'reporting_ns',
     modifier: r => r.reporting_ns_detail ? r.reporting_ns_detail.name : '',
+  },
+  {
+    title: 'Organizational Unit',
+    key: 'organizational_unit_display',
+  },
+  {
+    title: 'Partner',
+    key: 'partner',
+  },
+  {
+    title: 'Activity',
+    key: 'activity',
+  },
+  {
+    title: 'Subactivity',
+    key: 'subactivity',
   },
   {
     title: 'Operation Type',
@@ -54,8 +86,28 @@ const exportHeaders = [
     key: 'budget_amount',
   },
   {
+    title: 'Measurement Metric',
+    key: 'units_measurement_metric_display',
+  },
+  {
+    title: 'Quantity',
+    key: 'units_quantity',
+  },
+  {
+    title: 'Beneficiary Type',
+    key: 'beneficiary_type',
+  },
+  {
     title: 'Status',
     key: 'status_display',
+  },
+  {
+    title: 'Delivery Place',
+    key: 'where_delivery_service_place',
+  },
+  {
+    title: 'Delivery Service Name',
+    key: 'where_delivery_service_name',
   },
   {
     title: 'Targeted Males',
@@ -66,12 +118,24 @@ const exportHeaders = [
     key: 'target_female',
   },
   {
+    title: 'Targeted LGBTIQ',
+    key: 'target_lgbtiq',
+  },
+  {
     title: 'Targeted Others',
     key: 'target_other',
   },
   {
     title: 'Targeted Total',
     key: 'target_total',
+  },
+  {
+    title: 'Targeted Pregnant Women',
+    key: 'target_pregnant_women',
+  },
+  {
+    title: 'Target People with Disability',
+    key: 'target_people_with_disability',
   },
   {
     title: 'Reached Males',
@@ -82,12 +146,24 @@ const exportHeaders = [
     key: 'reached_female',
   },
   {
+    title: 'Reached LGBTIQ',
+    key: 'reached_lgbtiq',
+  },
+  {
     title: 'Reached Others',
     key: 'reached_other',
   },
   {
     title: 'Reached Total',
     key: 'reached_total',
+  },
+  {
+    title: 'Reached Pregnant Women',
+    key: 'reached_pregnant_women',
+  },
+  {
+    title: 'Reached People with Disability',
+    key: 'reached_people_with_disability',
   },
 ];
 
