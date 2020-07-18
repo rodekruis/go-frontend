@@ -41,11 +41,11 @@ import {
   sectorList,
   secondarySectorInputValues,
   secondarySectorList,
-  defaultSubactivityOptions,
   activityOptions,
+  subactivityOptions,
   unitsOfMeasurementOptions,
-  defaultDistrictOptions,
-  defaultMunicipalityOptions,
+  districtOptions,
+  municipalityOptions,
   provinceOptions,
   deliveryPointOptions,
   beneficiaryTypeOptions,
@@ -658,15 +658,15 @@ class ProjectForm extends React.PureComponent {
   ));
 
   getFilteredSubactivityOptions = memoize((activity) => (
-    activity >= 0 ? activityOptions[activity].subactivityOptions : defaultSubactivityOptions
+    subactivityOptions.filter(subactivity => subactivity.activityValue.indexOf(activity) >= 0)
   ));
 
   getFilteredDistrictOptions = memoize((province) => (
-    province >= 0 ? provinceOptions[province].districtOptions : defaultDistrictOptions
+    districtOptions.filter(district => district.provinceValue.indexOf(province) >= 0)
   ));
 
   getFilteredMunicipalityOptions = memoize((province, district) => (
-    province >= 0 && district >= 0 ? provinceOptions[province].districtOptions[district].municipalityOptions : defaultMunicipalityOptions
+    municipalityOptions.filter(municipality => municipality.provinceValue.indexOf(province) >= 0 && municipality.districtValue.indexOf(district) >= 0)
   ));
 
   handleSelectAllDistrictButtonClick = () => {
