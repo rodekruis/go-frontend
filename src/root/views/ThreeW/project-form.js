@@ -165,11 +165,11 @@ class ProjectForm extends React.PureComponent {
         programme_type: [requiredCondition],
         end_date: [requiredCondition],
         start_date: [requiredCondition],
-        reached_other: [positiveIntegerCondition],
-        reached_female: [positiveIntegerCondition],
-        reached_male: [positiveIntegerCondition],
-        reached_lgbtiq: [positiveIntegerCondition],
-        reached_total: [positiveIntegerCondition],
+        // reached_other: [positiveIntegerCondition],
+        // reached_female: [positiveIntegerCondition],
+        // reached_male: [positiveIntegerCondition],
+        // reached_lgbtiq: [positiveIntegerCondition],
+        // reached_total: [positiveIntegerCondition],
         reporting_ns: [requiredCondition],
         organizational_unit: [requiredCondition],
         partner: [requiredCondition],
@@ -192,16 +192,16 @@ class ProjectForm extends React.PureComponent {
         target_lgbtiq: [positiveIntegerCondition],
         target_total: [requiredCondition, positiveIntegerCondition],
         visibility: [requiredCondition],
-        target_lgbtiq_00_05: [positiveIntegerCondition],
-        target_lgbtiq_06_12: [positiveIntegerCondition],
-        target_lgbtiq_13_17: [positiveIntegerCondition],
-        target_lgbtiq_18_29: [positiveIntegerCondition],
-        target_lgbtiq_30_39: [positiveIntegerCondition],
-        target_lgbtiq_40_49: [positiveIntegerCondition],
-        target_lgbtiq_50_59: [positiveIntegerCondition],
-        target_lgbtiq_60_69: [positiveIntegerCondition],
-        target_lgbtiq_70_79: [positiveIntegerCondition],
-        target_lgbtiq_80_plus: [positiveIntegerCondition],
+        // target_lgbtiq_00_05: [positiveIntegerCondition],
+        // target_lgbtiq_06_12: [positiveIntegerCondition],
+        // target_lgbtiq_13_17: [positiveIntegerCondition],
+        // target_lgbtiq_18_29: [positiveIntegerCondition],
+        // target_lgbtiq_30_39: [positiveIntegerCondition],
+        // target_lgbtiq_40_49: [positiveIntegerCondition],
+        // target_lgbtiq_50_59: [positiveIntegerCondition],
+        // target_lgbtiq_60_69: [positiveIntegerCondition],
+        // target_lgbtiq_70_79: [positiveIntegerCondition],
+        // target_lgbtiq_80_plus: [positiveIntegerCondition],
         target_female_00_05: [positiveIntegerCondition],
         target_female_06_12: [positiveIntegerCondition],
         target_female_13_17: [positiveIntegerCondition],
@@ -224,38 +224,38 @@ class ProjectForm extends React.PureComponent {
         target_male_80_plus: [positiveIntegerCondition],
         target_pregnant_women: [positiveIntegerCondition],
         target_people_with_disability: [positiveIntegerCondition],
-        reached_lgbtiq_00_05: [positiveIntegerCondition],
-        reached_lgbtiq_06_12: [positiveIntegerCondition],
-        reached_lgbtiq_13_17: [positiveIntegerCondition],
-        reached_lgbtiq_18_29: [positiveIntegerCondition],
-        reached_lgbtiq_30_39: [positiveIntegerCondition],
-        reached_lgbtiq_40_49: [positiveIntegerCondition],
-        reached_lgbtiq_50_59: [positiveIntegerCondition],
-        reached_lgbtiq_60_69: [positiveIntegerCondition],
-        reached_lgbtiq_70_79: [positiveIntegerCondition],
-        reached_lgbtiq_80_plus: [positiveIntegerCondition],
-        reached_female_00_05: [positiveIntegerCondition],
-        reached_female_06_12: [positiveIntegerCondition],
-        reached_female_13_17: [positiveIntegerCondition],
-        reached_female_18_29: [positiveIntegerCondition],
-        reached_female_30_39: [positiveIntegerCondition],
-        reached_female_40_49: [positiveIntegerCondition],
-        reached_female_50_59: [positiveIntegerCondition],
-        reached_female_60_69: [positiveIntegerCondition],
-        reached_female_70_79: [positiveIntegerCondition],
-        reached_female_80_plus: [positiveIntegerCondition],
-        reached_male_00_05: [positiveIntegerCondition],
-        reached_male_06_12: [positiveIntegerCondition],
-        reached_male_13_17: [positiveIntegerCondition],
-        reached_male_18_29: [positiveIntegerCondition],
-        reached_male_30_39: [positiveIntegerCondition],
-        reached_male_40_49: [positiveIntegerCondition],
-        reached_male_50_59: [positiveIntegerCondition],
-        reached_male_60_69: [positiveIntegerCondition],
-        reached_male_70_79: [positiveIntegerCondition],
-        reached_male_80_plus: [positiveIntegerCondition],
-        reached_pregnant_women: [positiveIntegerCondition],
-        reached_people_with_disability: [positiveIntegerCondition],
+        // reached_lgbtiq_00_05: [positiveIntegerCondition],
+        // reached_lgbtiq_06_12: [positiveIntegerCondition],
+        // reached_lgbtiq_13_17: [positiveIntegerCondition],
+        // reached_lgbtiq_18_29: [positiveIntegerCondition],
+        // reached_lgbtiq_30_39: [positiveIntegerCondition],
+        // reached_lgbtiq_40_49: [positiveIntegerCondition],
+        // reached_lgbtiq_50_59: [positiveIntegerCondition],
+        // reached_lgbtiq_60_69: [positiveIntegerCondition],
+        // reached_lgbtiq_70_79: [positiveIntegerCondition],
+        // reached_lgbtiq_80_plus: [positiveIntegerCondition],
+        // reached_female_00_05: [positiveIntegerCondition],
+        // reached_female_06_12: [positiveIntegerCondition],
+        // reached_female_13_17: [positiveIntegerCondition],
+        // reached_female_18_29: [positiveIntegerCondition],
+        // reached_female_30_39: [positiveIntegerCondition],
+        // reached_female_40_49: [positiveIntegerCondition],
+        // reached_female_50_59: [positiveIntegerCondition],
+        // reached_female_60_69: [positiveIntegerCondition],
+        // reached_female_70_79: [positiveIntegerCondition],
+        // reached_female_80_plus: [positiveIntegerCondition],
+        // reached_male_00_05: [positiveIntegerCondition],
+        // reached_male_06_12: [positiveIntegerCondition],
+        // reached_male_13_17: [positiveIntegerCondition],
+        // reached_male_18_29: [positiveIntegerCondition],
+        // reached_male_30_39: [positiveIntegerCondition],
+        // reached_male_40_49: [positiveIntegerCondition],
+        // reached_male_50_59: [positiveIntegerCondition],
+        // reached_male_60_69: [positiveIntegerCondition],
+        // reached_male_70_79: [positiveIntegerCondition],
+        // reached_male_80_plus: [positiveIntegerCondition],
+        // reached_pregnant_women: [positiveIntegerCondition],
+        // reached_people_with_disability: [positiveIntegerCondition],
       },
     };
 
@@ -286,11 +286,11 @@ class ProjectForm extends React.PureComponent {
         programme_type: projectData.programme_type,
         end_date: projectData.end_date,
         start_date: projectData.start_date,
-        reached_lgbtiq: projectData.reached_lgbtiq || 0,
-        reached_other: projectData.reached_other || 0,
-        reached_female: projectData.reached_female || 0,
-        reached_male: projectData.reached_male || 0,
-        reached_total: projectData.reached_total || 0,
+        // reached_lgbtiq: projectData.reached_lgbtiq || 0,
+        // reached_other: projectData.reached_other || 0,
+        // reached_female: projectData.reached_female || 0,
+        // reached_male: projectData.reached_male || 0,
+        // reached_total: projectData.reached_total || 0,
         reporting_ns: projectData.reporting_ns,
         organizational_unit: projectData.organizational_unit,
         partner: projectData.partner,
@@ -314,16 +314,16 @@ class ProjectForm extends React.PureComponent {
         target_male: projectData.target_male || 0,
         target_total: projectData.target_total || 0,
         visibility: projectData.visibility || 'public',
-        target_lgbtiq_00_05: projectData.target_lgbtiq_00_05 || undefined,
-        target_lgbtiq_06_12: projectData.target_lgbtiq_06_12 || undefined,
-        target_lgbtiq_13_17: projectData.target_lgbtiq_13_17 || undefined,
-        target_lgbtiq_18_29: projectData.target_lgbtiq_18_29 || undefined,
-        target_lgbtiq_30_39: projectData.target_lgbtiq_30_39 || undefined,
-        target_lgbtiq_40_49: projectData.target_lgbtiq_40_49 || undefined,
-        target_lgbtiq_50_59: projectData.target_lgbtiq_50_59 || undefined,
-        target_lgbtiq_60_69: projectData.target_lgbtiq_60_69 || undefined,
-        target_lgbtiq_70_79: projectData.target_lgbtiq_70_79 || undefined,
-        target_lgbtiq_80_plus: projectData.target_lgbtiq_80_plus || undefined,
+        // target_lgbtiq_00_05: projectData.target_lgbtiq_00_05 || undefined,
+        // target_lgbtiq_06_12: projectData.target_lgbtiq_06_12 || undefined,
+        // target_lgbtiq_13_17: projectData.target_lgbtiq_13_17 || undefined,
+        // target_lgbtiq_18_29: projectData.target_lgbtiq_18_29 || undefined,
+        // target_lgbtiq_30_39: projectData.target_lgbtiq_30_39 || undefined,
+        // target_lgbtiq_40_49: projectData.target_lgbtiq_40_49 || undefined,
+        // target_lgbtiq_50_59: projectData.target_lgbtiq_50_59 || undefined,
+        // target_lgbtiq_60_69: projectData.target_lgbtiq_60_69 || undefined,
+        // target_lgbtiq_70_79: projectData.target_lgbtiq_70_79 || undefined,
+        // target_lgbtiq_80_plus: projectData.target_lgbtiq_80_plus || undefined,
         target_female_00_05: projectData.target_female_00_05 || undefined,
         target_female_06_12: projectData.target_female_06_12 || undefined,
         target_female_13_17: projectData.target_female_13_17 || undefined,
@@ -346,38 +346,38 @@ class ProjectForm extends React.PureComponent {
         target_male_80_plus: projectData.target_male_80_plus || undefined,
         target_pregnant_women: projectData.target_pregnant_women || undefined,
         target_people_with_disability: projectData.target_people_with_disability || undefined,
-        reached_lgbtiq_00_05: projectData.reached_lgbtiq_00_05 || undefined,
-        reached_lgbtiq_06_12: projectData.reached_lgbtiq_06_12 || undefined,
-        reached_lgbtiq_13_17: projectData.reached_lgbtiq_13_17 || undefined,
-        reached_lgbtiq_18_29: projectData.reached_lgbtiq_18_29 || undefined,
-        reached_lgbtiq_30_39: projectData.reached_lgbtiq_30_39 || undefined,
-        reached_lgbtiq_40_49: projectData.reached_lgbtiq_40_49 || undefined,
-        reached_lgbtiq_50_59: projectData.reached_lgbtiq_50_59 || undefined,
-        reached_lgbtiq_60_69: projectData.reached_lgbtiq_60_69 || undefined,
-        reached_lgbtiq_70_79: projectData.reached_lgbtiq_70_79 || undefined,
-        reached_lgbtiq_80_plus: projectData.reached_lgbtiq_80_plus || undefined,
-        reached_female_00_05: projectData.reached_female_00_05 || undefined,
-        reached_female_06_12: projectData.reached_female_06_12 || undefined,
-        reached_female_13_17: projectData.reached_female_13_17 || undefined,
-        reached_female_18_29: projectData.reached_female_18_29 || undefined,
-        reached_female_30_39: projectData.reached_female_30_39 || undefined,
-        reached_female_40_49: projectData.reached_female_40_49 || undefined,
-        reached_female_50_59: projectData.reached_female_50_59 || undefined,
-        reached_female_60_69: projectData.reached_female_60_69 || undefined,
-        reached_female_70_79: projectData.reached_female_70_79 || undefined,
-        reached_female_80_plus: projectData.reached_female_80_plus || undefined,
-        reached_male_00_05: projectData.reached_male_00_05 || undefined,
-        reached_male_06_12: projectData.reached_male_06_12 || undefined,
-        reached_male_13_17: projectData.reached_male_13_17 || undefined,
-        reached_male_18_29: projectData.reached_male_18_29 || undefined,
-        reached_male_30_39: projectData.reached_male_30_39 || undefined,
-        reached_male_40_49: projectData.reached_male_40_49 || undefined,
-        reached_male_50_59: projectData.reached_male_50_59 || undefined,
-        reached_male_60_69: projectData.reached_male_60_69 || undefined,
-        reached_male_70_79: projectData.reached_male_70_79 || undefined,
-        reached_male_80_plus: projectData.reached_male_80_plus || undefined,
-        reached_pregnant_women: projectData.reached_pregnant_women || undefined,
-        reached_people_with_disability: projectData.reached_people_with_disability || undefined,
+        // reached_lgbtiq_00_05: projectData.reached_lgbtiq_00_05 || undefined,
+        // reached_lgbtiq_06_12: projectData.reached_lgbtiq_06_12 || undefined,
+        // reached_lgbtiq_13_17: projectData.reached_lgbtiq_13_17 || undefined,
+        // reached_lgbtiq_18_29: projectData.reached_lgbtiq_18_29 || undefined,
+        // reached_lgbtiq_30_39: projectData.reached_lgbtiq_30_39 || undefined,
+        // reached_lgbtiq_40_49: projectData.reached_lgbtiq_40_49 || undefined,
+        // reached_lgbtiq_50_59: projectData.reached_lgbtiq_50_59 || undefined,
+        // reached_lgbtiq_60_69: projectData.reached_lgbtiq_60_69 || undefined,
+        // reached_lgbtiq_70_79: projectData.reached_lgbtiq_70_79 || undefined,
+        // reached_lgbtiq_80_plus: projectData.reached_lgbtiq_80_plus || undefined,
+        // reached_female_00_05: projectData.reached_female_00_05 || undefined,
+        // reached_female_06_12: projectData.reached_female_06_12 || undefined,
+        // reached_female_13_17: projectData.reached_female_13_17 || undefined,
+        // reached_female_18_29: projectData.reached_female_18_29 || undefined,
+        // reached_female_30_39: projectData.reached_female_30_39 || undefined,
+        // reached_female_40_49: projectData.reached_female_40_49 || undefined,
+        // reached_female_50_59: projectData.reached_female_50_59 || undefined,
+        // reached_female_60_69: projectData.reached_female_60_69 || undefined,
+        // reached_female_70_79: projectData.reached_female_70_79 || undefined,
+        // reached_female_80_plus: projectData.reached_female_80_plus || undefined,
+        // reached_male_00_05: projectData.reached_male_00_05 || undefined,
+        // reached_male_06_12: projectData.reached_male_06_12 || undefined,
+        // reached_male_13_17: projectData.reached_male_13_17 || undefined,
+        // reached_male_18_29: projectData.reached_male_18_29 || undefined,
+        // reached_male_30_39: projectData.reached_male_30_39 || undefined,
+        // reached_male_40_49: projectData.reached_male_40_49 || undefined,
+        // reached_male_50_59: projectData.reached_male_50_59 || undefined,
+        // reached_male_60_69: projectData.reached_male_60_69 || undefined,
+        // reached_male_70_79: projectData.reached_male_70_79 || undefined,
+        // reached_male_80_plus: projectData.reached_male_80_plus || undefined,
+        // reached_pregnant_women: projectData.reached_pregnant_women || undefined,
+        // reached_people_with_disability: projectData.reached_people_with_disability || undefined,
       },
       faramErrors: {},
     };
@@ -751,7 +751,7 @@ class ProjectForm extends React.PureComponent {
     );
 
     const shouldDisableTotalTarget = !isFalsy(faramValues.target_male) || !isFalsy(faramValues.target_female) || !isFalsy(faramValues.target_other);
-    const shouldDisableTotalReached = !isFalsy(faramValues.reached_male) || !isFalsy(faramValues.reached_female) || !isFalsy(faramValues.reached_other);
+    // const shouldDisableTotalReached = !isFalsy(faramValues.reached_male) || !isFalsy(faramValues.reached_female) || !isFalsy(faramValues.reached_other);
     const filteredSecondarySectorOptions = this.getFilteredSecondarySectorOptions(faramValues.sector);
     const filteredSubactivityOptions = this.getFilteredSubactivityOptions(faramValues.activity);
 
@@ -1205,48 +1205,48 @@ class ProjectForm extends React.PureComponent {
 
           <InputSection
             className='multi-input-section'
-            title={strings.projectFormTargetedLGBTIQPeople}
-            helpText={strings.projectFormTargetedLGBTIQPeopleText}
-            tooltip={strings.projectFormTargetedLGBTIQPeopleTooltip}
+            title={strings.projectFormTargetedMalePeople}
+            helpText={strings.projectFormTargetedMalePeopleText}
+            tooltip={strings.projectFormTargetedMalePeopleTooltip}
           >
             <NumberInput
-              faramElementName='target_lgbtiq_00_05'
+              faramElementName='target_male_00_05'
               label={strings.projectFormAge0005}
             />
             <NumberInput
-              faramElementName='target_lgbtiq_06_12'
+              faramElementName='target_male_06_12'
               label={strings.projectFormAge0612}
             />
             <NumberInput
-              faramElementName='target_lgbtiq_13_17'
+              faramElementName='target_male_13_17'
               label={strings.projectFormAge1317}
             />
             <NumberInput
-              faramElementName='target_lgbtiq_18_29'
+              faramElementName='target_male_18_29'
               label={strings.projectFormAge1829}
             />
             <NumberInput
-              faramElementName='target_lgbtiq_30_39'
+              faramElementName='target_male_30_39'
               label={strings.projectFormAge3039}
             />
             <NumberInput
-              faramElementName='target_lgbtiq_40_49'
+              faramElementName='target_male_40_49'
               label={strings.projectFormAge4049}
             />
             <NumberInput
-              faramElementName='target_lgbtiq_50_59'
+              faramElementName='target_male_50_59'
               label={strings.projectFormAge5059}
             />
             <NumberInput
-              faramElementName='target_lgbtiq_60_69'
+              faramElementName='target_male_60_69'
               label={strings.projectFormAge6069}
             />
             <NumberInput
-              faramElementName='target_lgbtiq_70_79'
+              faramElementName='target_male_70_79'
               label={strings.projectFormAge7079}
             />
             <NumberInput
-              faramElementName='target_lgbtiq_80_plus'
+              faramElementName='target_male_80_plus'
               label={strings.projectFormAge80Plus}
             />
           </InputSection>
@@ -1300,50 +1300,12 @@ class ProjectForm extends React.PureComponent {
           </InputSection>
 
           <InputSection
-            className='multi-input-section'
-            title={strings.projectFormTargetedMalePeople}
-            helpText={strings.projectFormTargetedMalePeopleText}
-            tooltip={strings.projectFormTargetedMalePeopleTooltip}
+            title={strings.projectFormTargetedLGBTIQPeople}
+            helpText={strings.projectFormTargetedLGBTIQPeopleText}
+            tooltip={strings.projectFormTargetedLGBTIQPeopleTooltip}
           >
             <NumberInput
-              faramElementName='target_male_00_05'
-              label={strings.projectFormAge0005}
-            />
-            <NumberInput
-              faramElementName='target_male_06_12'
-              label={strings.projectFormAge0612}
-            />
-            <NumberInput
-              faramElementName='target_male_13_17'
-              label={strings.projectFormAge1317}
-            />
-            <NumberInput
-              faramElementName='target_male_18_29'
-              label={strings.projectFormAge1829}
-            />
-            <NumberInput
-              faramElementName='target_male_30_39'
-              label={strings.projectFormAge3039}
-            />
-            <NumberInput
-              faramElementName='target_male_40_49'
-              label={strings.projectFormAge4049}
-            />
-            <NumberInput
-              faramElementName='target_male_50_59'
-              label={strings.projectFormAge5059}
-            />
-            <NumberInput
-              faramElementName='target_male_60_69'
-              label={strings.projectFormAge6069}
-            />
-            <NumberInput
-              faramElementName='target_male_70_79'
-              label={strings.projectFormAge7079}
-            />
-            <NumberInput
-              faramElementName='target_male_80_plus'
-              label={strings.projectFormAge80Plus}
+                faramElementName='target_lgbtiq'
             />
           </InputSection>
 
@@ -1370,209 +1332,6 @@ class ProjectForm extends React.PureComponent {
             <NumberInput
                 faramElementName='target_people_with_disability'
                 label={strings.projectFormTargetedPeopleWithDisabilityLabel}
-            />
-          </InputSection>
-
-          <InputSection
-            className='multi-input-section'
-            title={strings.projectFormReachedTotalPeople}
-            helpText={strings.projectFormReachedTotalPeopleText}
-            tooltip={strings.projectFormReachedTotalPeopleTooltip}
-          >
-            <NumberInput
-              disabled={true}
-              faramElementName='reached_male'
-              label={strings.projectFormReachedMalePeopleLabel}
-            />
-            <NumberInput
-              disabled={true}
-              faramElementName='reached_female'
-              label={strings.projectFormReachedFemalePeopleLabel}
-            />
-            <NumberInput
-              disabled={true}
-              faramElementName='reached_lgbtiq'
-              label={strings.projectFormReachedLGBTIQPeopleLabel}
-            />
-            <NumberInput
-              disabled={true}
-              faramElementName='reached_other'
-              label={strings.projectFormReachedOtherPeopleLabel}
-            />
-            <NumberInput
-              disabled={true || shouldDisableTotalReached}
-              faramElementName='reached_total'
-              label={strings.projectFormReachedTotalPeopleLabel}
-            />
-          </InputSection>
-
-          <InputSection
-            className='multi-input-section'
-            title={strings.projectFormReachedLGBTIQPeople}
-            helpText={strings.projectFormReachedLGBTIQPeopleText}
-            tooltip={strings.projectFormReachedLGBTIQPeopleTooltip}
-          >
-            <NumberInput
-              faramElementName='reached_lgbtiq_00_05'
-              label={strings.projectFormAge0005}
-            />
-            <NumberInput
-              faramElementName='reached_lgbtiq_06_12'
-              label={strings.projectFormAge0612}
-            />
-            <NumberInput
-              faramElementName='reached_lgbtiq_13_17'
-              label={strings.projectFormAge1317}
-            />
-            <NumberInput
-              faramElementName='reached_lgbtiq_18_29'
-              label={strings.projectFormAge1829}
-            />
-            <NumberInput
-              faramElementName='reached_lgbtiq_30_39'
-              label={strings.projectFormAge3039}
-            />
-            <NumberInput
-              faramElementName='reached_lgbtiq_40_49'
-              label={strings.projectFormAge4049}
-            />
-            <NumberInput
-              faramElementName='reached_lgbtiq_50_59'
-              label={strings.projectFormAge5059}
-            />
-            <NumberInput
-              faramElementName='reached_lgbtiq_60_69'
-              label={strings.projectFormAge6069}
-            />
-            <NumberInput
-              faramElementName='reached_lgbtiq_70_79'
-              label={strings.projectFormAge7079}
-            />
-            <NumberInput
-              faramElementName='reached_lgbtiq_80_plus'
-              label={strings.projectFormAge80Plus}
-            />
-          </InputSection>
-
-          <InputSection
-            className='multi-input-section'
-            title={strings.projectFormReachedFemalePeople}
-            helpText={strings.projectFormReachedFemalePeopleText}
-            tooltip={strings.projectFormReachedFemalePeopleTooltip}
-          >
-            <NumberInput
-              faramElementName='reached_female_00_05'
-              label={strings.projectFormAge0005}
-            />
-            <NumberInput
-              faramElementName='reached_female_06_12'
-              label={strings.projectFormAge0612}
-            />
-            <NumberInput
-              faramElementName='reached_female_13_17'
-              label={strings.projectFormAge1317}
-            />
-            <NumberInput
-              faramElementName='reached_female_18_29'
-              label={strings.projectFormAge1829}
-            />
-            <NumberInput
-              faramElementName='reached_female_30_39'
-              label={strings.projectFormAge3039}
-            />
-            <NumberInput
-              faramElementName='reached_female_40_49'
-              label={strings.projectFormAge4049}
-            />
-            <NumberInput
-              faramElementName='reached_female_50_59'
-              label={strings.projectFormAge5059}
-            />
-            <NumberInput
-              faramElementName='reached_female_60_69'
-              label={strings.projectFormAge6069}
-            />
-            <NumberInput
-              faramElementName='reached_female_70_79'
-              label={strings.projectFormAge7079}
-            />
-            <NumberInput
-              faramElementName='reached_female_80_plus'
-              label={strings.projectFormAge80Plus}
-            />
-          </InputSection>
-
-          <InputSection
-            className='multi-input-section'
-            title={strings.projectFormReachedMalePeople}
-            helpText={strings.projectFormReachedMalePeopleText}
-            tooltip={strings.projectFormReachedMalePeopleTooltip}
-          >
-            <NumberInput
-              faramElementName='reached_male_00_05'
-              label={strings.projectFormAge0005}
-            />
-            <NumberInput
-              faramElementName='reached_male_06_12'
-              label={strings.projectFormAge0612}
-            />
-            <NumberInput
-              faramElementName='reached_male_13_17'
-              label={strings.projectFormAge1317}
-            />
-            <NumberInput
-              faramElementName='reached_male_18_29'
-              label={strings.projectFormAge1829}
-            />
-            <NumberInput
-              faramElementName='reached_male_30_39'
-              label={strings.projectFormAge3039}
-            />
-            <NumberInput
-              faramElementName='reached_male_40_49'
-              label={strings.projectFormAge4049}
-            />
-            <NumberInput
-              faramElementName='reached_male_50_59'
-              label={strings.projectFormAge5059}
-            />
-            <NumberInput
-              faramElementName='reached_male_60_69'
-              label={strings.projectFormAge6069}
-            />
-            <NumberInput
-              faramElementName='reached_male_70_79'
-              label={strings.projectFormAge7079}
-            />
-            <NumberInput
-              faramElementName='reached_male_80_plus'
-              label={strings.projectFormAge80Plus}
-            />
-          </InputSection>
-
-          <InputSection
-            title={strings.projectFormReachedOtherPeople}
-            helpText={strings.projectFormReachedOtherPeopleText}
-            tooltip={strings.projectFormReachedOtherPeopleTooltip}
-          >
-            <NumberInput
-                faramElementName='reached_other'
-            />
-          </InputSection>
-
-          <InputSection
-            className='multi-input-section'
-            title={strings.projectFormReachedVulnerable}
-            helpText={strings.projectFormReachedVulnerableText}
-            tooltip={strings.projectFormReachedVulnerableTooltip}
-          >
-            <NumberInput
-                faramElementName='reached_pregnant_women'
-                label={strings.projectFormReachedPregnantWomenLabel}
-            />
-            <NumberInput
-                faramElementName='reached_people_with_disability'
-                label={strings.projectFormReachedPeopleWithDisabilityLabel}
             />
           </InputSection>
 
