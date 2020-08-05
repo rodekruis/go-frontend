@@ -18,21 +18,7 @@ import MapFooter from '#components/map/common/map-footer';
 import newMap from '#utils/get-new-map';
 import LanguageContext from '#root/languageContext';
 
-const emptyList = [];
-const emptyObject = {};
-
-const getResultsFromResponse = (response, defaultValue = emptyList) => {
-  const {
-    fetched,
-    data
-  } = response || emptyObject;
-
-  if (!fetched || !data || !data.results || !data.results.length) {
-    return defaultValue;
-  }
-
-  return response.data.results;
-};
+import nepalGeojson from '#root/../assets/geojsons/nepal.geojson';
 
 const ProjectDetailElement = ({
   label,
@@ -64,7 +50,6 @@ const ProjectDetail = (p) => {
       programme_type_display,
       primary_sector_display,
       modified_at: modifiedAt = '-',
-      project_districts_detail: districts,
     },
   } = p;
 
@@ -87,12 +72,6 @@ const ProjectDetail = (p) => {
         label={strings.threeWMapSector}
         value={primary_sector_display}
       />
-      { districts && districts.length > 0 && (
-        <ProjectDetailElement
-          label={strings.threeWMapRegions}
-          value={districts.map(d => d.name).join(', ')}
-        />
-      )}
       <ProjectDetailElement
         label={strings.threeWMapProgrammeType}
         value={programme_type_display}
@@ -146,7 +125,7 @@ class ThreeWMap extends React.PureComponent {
 
     if (countryId !== oldCountryId || projectList !== oldProjectList || oldDistrictsResponse !== districtsResponse) {
       if (this.mapLoaded) {
-        this.fillMap(countryId, projectList, districtsResponse);
+        this.fillMap(countryId, projectList);
       }
     }
   }
@@ -154,13 +133,28 @@ class ThreeWMap extends React.PureComponent {
   handleMapLoad = () => {
     this.mapLoaded = true;
 
+    this.map.addSource("nepal", {
+        type: "geojson",
+        data: nepalGeojson,
+    });
+
+    this.map.addLayer({
+        id: "nepal",
+        type: "fill",
+        source: "nepal",
+        layout: {},
+        paint: {
+            "fill-color": "#088",
+            "fill-opacity": 0.8,
+        },
+    });
+
     const {
       countryId,
       projectList,
-      districtsResponse,
     } = this.props;
 
-    this.fillMap(countryId, projectList, districtsResponse);
+    this.fillMap(countryId, projectList);
   }
 
   resetBounds = (countryId, largePadding = false) => {
@@ -179,13 +173,11 @@ class ThreeWMap extends React.PureComponent {
     );
   }
 
-  fillMap = (countryId, projectList, districtsResponse) => {
-    const districtList = getResultsFromResponse(districtsResponse[countryId], emptyList);
-
+  fillMap = (countryId, projectList) => {
     this.resetBounds(countryId);
 
-    const allDistrictList = projectList.map(d => d.project_districts).flat();
-    const allDistricts = allDistrictList.reduce((acc, val) => {
+    const projectProvinces = projectList.map(d => d.where_province).flat();
+    const projectProvinceCounts = projectProvinces.reduce((acc, val) => {
       if (!acc[val]) {
         acc[val] = 0;
       }
@@ -193,29 +185,30 @@ class ThreeWMap extends React.PureComponent {
       return acc;
     }, {});
 
-    const state = districtList.map(d => ({
-      id: d.id,
-      count: allDistricts[d.id] || 0,
+    const provinces = [0,1,2,3,4,5,6].map(d => ({
+        id: d + 1,
+        count: projectProvinceCounts[d] || 0,
     }));
 
-    const maxProjects = Math.max(0, ...Object.values(allDistricts));
+    // const maxProjects = Math.max(0, ...Object.values(allDistricts));
+    const maxProjects = Math.max(0, ...Object.values(projectProvinceCounts));
     let opacityProperty;
 
     const upperShift = 0.2;
     const lowerShift = 0.1;
 
-    if (state.length > 0) {
+    if (provinces.length > 0) {
       opacityProperty = [
         'match',
-        ['get', 'OBJECTID'],
+        ['get', 'STATE_CODE'],
 
-        ...state.map(district => {
+        ...provinces.map(province => {
           const value = (maxProjects !== 0)
-            ? (lowerShift + (district.count / maxProjects) * (1 - upperShift - lowerShift))
+            ? (lowerShift + (province.count / maxProjects) * (1 - upperShift - lowerShift))
             : lowerShift;
 
           return [
-            district.id,
+            province.id,
             value,
           ];
         }).flat(),
@@ -227,7 +220,7 @@ class ThreeWMap extends React.PureComponent {
     }
 
     this.map.setPaintProperty(
-      'adm1',
+      'nepal',
       'fill-opacity',
       opacityProperty,
     );
@@ -235,24 +228,24 @@ class ThreeWMap extends React.PureComponent {
 
   handleMapClick = (e) => {
     const { projectList } = this.props;
-    const projectDistrictList = [...new Set(projectList.map(d => d.project_districts).flat())];
+    const projectDistrictList = [...new Set(projectList.map(d => d.where_province + 1).flat())];
 
     const features = this.map.queryRenderedFeatures(
       e.point,
       {
-        layers: ['adm1'],
+        layers: ['nepal'],
         filter: [
           'in',
-          'OBJECTID',
+          'STATE_CODE',
           ...projectDistrictList,
         ],
       },
     );
 
-    this.showDistrictDetailPopover(this.map, e.lngLat, features[0]);
+    this.showProvinceDetailPopover(this.map, e.lngLat, features[0]);
   }
 
-  showDistrictDetailPopover = (
+  showProvinceDetailPopover = (
     map,
     clickLocation,
     feature,
@@ -267,16 +260,18 @@ class ThreeWMap extends React.PureComponent {
       properties,
     } = feature;
 
-    const {
-      OBJECTID: districtId,
-      Admin01Nam: title,
+    let {
+      STATE_CODE: stateCode,
+      Province: title,
     } = properties;
 
-    const projectsInCurrentDistrict = projectList
-      .filter(p => p.project_districts && p.project_districts.length > 0)
-      .filter(p => p.project_districts.findIndex(d => d === districtId) !== -1);
+    title = title.length > 1 ? title : "Province " + title;
 
-    const numProjects = projectsInCurrentDistrict.length;
+    const projectsInCurrentProvince = projectList.filter(
+        p => p.where_province + 1 === stateCode
+    );
+
+    const numProjects = projectsInCurrentProvince.length;
 
     render(
       (
@@ -285,7 +280,7 @@ class ThreeWMap extends React.PureComponent {
             { title } ({numProjects} { numProjects > 1 ? 'projects' : 'project' })
           </h4>
           <div className='detail-popover-content'>
-            { projectsInCurrentDistrict.map(p => (
+            { projectsInCurrentProvince.map(p => (
               <ProjectDetail
                 project={p}
                 key={p.id}
