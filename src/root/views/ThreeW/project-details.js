@@ -110,12 +110,12 @@ class ProjectDetails extends React.PureComponent {
                 value={end_date}
               />
             </div>
-            <div className='tc-section'>
+            {/* <div className='tc-section'>
               <TextOutput
                 label={strings.threeWProjectDistricts}
                 value={project_districts_detail ? (project_districts_detail.map(d => d.name).join(', ')) : ''}
               />
-            </div>
+            </div> */}
             <div className='tc-section'>
               <TextOutput
                 label={strings.threeWNationalSociety}

@@ -269,7 +269,7 @@ class ProjectForm extends React.PureComponent {
         return [district];
       }
 
-      return [];
+      return [2239, 2240, 2241, 2242, 2243];
     };
 
     this.state = {
@@ -584,7 +584,7 @@ class ProjectForm extends React.PureComponent {
 
       newFaramValues = {
         ...newFaramValues,
-        project_districts: [],
+        project_districts: [2239, 2240, 2241, 2242, 2243],
         event: undefined,
       };
     }
@@ -813,7 +813,7 @@ class ProjectForm extends React.PureComponent {
           </InputSection>
 
           <InputSection
-            className='multi-input-section'
+            className='multi-input-section hidden'
             title={strings.projectFormCountryTitle}
             helpText={strings.projectFormCountryHelpText}
             tooltip={strings.projectFormCountryTooltip}
