@@ -977,7 +977,7 @@ export default {
   projectFormSubmitting: 'Submitting...',
   projectFormModalTitle: 'Red Cross / Red Crescent activities',
   projectFormModalClose: 'Close',
-  regionOverviewTitle: 'Regions',
+  regionOverviewTitle: 'Provinces',
   regionOverviewSectorActivity: 'Activities by sector',
   regionOverviewActivityStatus: 'Activity status overview',
   summaryStatsLabel: 'Active National societies',

@@ -46,12 +46,12 @@ export default class RegionOverview extends React.PureComponent {
       projectList,
     } = this.props;
 
-    const allDistrictList = projectList.map(d => d.project_districts_detail).flat();
+    const allDistrictList = projectList.map(d => d.where_province_display).flat();
     const allDistricts = allDistrictList.reduce((acc, val) => {
-      if (!acc[val.name]) {
-        acc[val.name] = 0;
+      if (!acc[val]) {
+        acc[val] = 0;
       }
-      ++acc[val.name];
+      ++acc[val];
       return acc;
     }, {});
 
