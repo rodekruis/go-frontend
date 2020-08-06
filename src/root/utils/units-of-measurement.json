@@ -1,0 +1,22 @@
+[
+    {
+        "value": 0,
+        "label": "Event"
+    },
+    {
+        "value": 1,
+        "label": "Unit"
+    },
+    {
+        "value": 2,
+        "label": "Piece"
+    },
+    {
+        "value": 3,
+        "label": "Number"
+    },
+    {
+        "value": 4,
+        "label": "Lump Sum"
+    }
+]

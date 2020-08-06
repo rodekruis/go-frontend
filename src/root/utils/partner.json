@@ -1,0 +1,6 @@
+[
+    { "value": 0, "label": "Through NRCS HQS" },
+    { "value": 1, "label": "Government Agencies" },
+    { "value": 2, "label": "INGO/NGO" },
+    { "value": 3, "label": "Other" }
+]

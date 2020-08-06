@@ -1,0 +1,464 @@
+[
+    {
+        "value": 0,
+        "label": "Taplejung",
+        "provinceValue": [0],
+        "provinceLabel": ["Province 1"]
+    },
+    {
+        "value": 1,
+        "label": "Panchthar",
+        "provinceValue": [0],
+        "provinceLabel": ["Province 1"]
+    },
+    {
+        "value": 2,
+        "label": "Ilam",
+        "provinceValue": [0],
+        "provinceLabel": ["Province 1"]
+    },
+    {
+        "value": 3,
+        "label": "Jhapa",
+        "provinceValue": [0],
+        "provinceLabel": ["Province 1"]
+    },
+    {
+        "value": 4,
+        "label": "Morang",
+        "provinceValue": [0],
+        "provinceLabel": ["Province 1"]
+    },
+    {
+        "value": 5,
+        "label": "Sunsari",
+        "provinceValue": [0],
+        "provinceLabel": ["Province 1"]
+    },
+    {
+        "value": 6,
+        "label": "Dhankuta",
+        "provinceValue": [0],
+        "provinceLabel": ["Province 1"]
+    },
+    {
+        "value": 7,
+        "label": "Terhathum",
+        "provinceValue": [0],
+        "provinceLabel": ["Province 1"]
+    },
+    {
+        "value": 8,
+        "label": "Sankhuwasabha",
+        "provinceValue": [0],
+        "provinceLabel": ["Province 1"]
+    },
+    {
+        "value": 9,
+        "label": "Bhojpur",
+        "provinceValue": [0],
+        "provinceLabel": ["Province 1"]
+    },
+    {
+        "value": 10,
+        "label": "Solukhumbu",
+        "provinceValue": [0],
+        "provinceLabel": ["Province 1"]
+    },
+    {
+        "value": 11,
+        "label": "Okhaldhunga",
+        "provinceValue": [0],
+        "provinceLabel": ["Province 1"]
+    },
+    {
+        "value": 12,
+        "label": "Khotang",
+        "provinceValue": [0],
+        "provinceLabel": ["Province 1"]
+    },
+    {
+        "value": 13,
+        "label": "Udayapur",
+        "provinceValue": [0],
+        "provinceLabel": ["Province 1"]
+    },
+    {
+        "value": 14,
+        "label": "Saptari",
+        "provinceValue": [1],
+        "provinceLabel": ["Province 2"]
+    },
+    {
+        "value": 15,
+        "label": "Siraha",
+        "provinceValue": [1],
+        "provinceLabel": ["Province 2"]
+    },
+    {
+        "value": 16,
+        "label": "Dhanusha",
+        "provinceValue": [1],
+        "provinceLabel": ["Province 2"]
+    },
+    {
+        "value": 17,
+        "label": "Mahottari",
+        "provinceValue": [1],
+        "provinceLabel": ["Province 2"]
+    },
+    {
+        "value": 18,
+        "label": "Sarlahi",
+        "provinceValue": [1],
+        "provinceLabel": ["Province 2"]
+    },
+    {
+        "value": 19,
+        "label": "Sindhuli",
+        "provinceValue": [2],
+        "provinceLabel": ["Bagmati"]
+    },
+    {
+        "value": 20,
+        "label": "Ramechhap",
+        "provinceValue": [2],
+        "provinceLabel": ["Bagmati"]
+    },
+    {
+        "value": 21,
+        "label": "Dolakha",
+        "provinceValue": [2],
+        "provinceLabel": ["Bagmati"]
+    },
+    {
+        "value": 22,
+        "label": "Sindhupalchok",
+        "provinceValue": [2],
+        "provinceLabel": ["Bagmati"]
+    },
+    {
+        "value": 23,
+        "label": "Kabhrepalanchok",
+        "provinceValue": [2],
+        "provinceLabel": ["Bagmati"]
+    },
+    {
+        "value": 24,
+        "label": "Lalitpur",
+        "provinceValue": [2],
+        "provinceLabel": ["Bagmati"]
+    },
+    {
+        "value": 25,
+        "label": "Bhaktapur",
+        "provinceValue": [2],
+        "provinceLabel": ["Bagmati"]
+    },
+    {
+        "value": 26,
+        "label": "Kathmandu",
+        "provinceValue": [2],
+        "provinceLabel": ["Bagmati"]
+    },
+    {
+        "value": 27,
+        "label": "Nuwakot",
+        "provinceValue": [2],
+        "provinceLabel": ["Bagmati"]
+    },
+    {
+        "value": 28,
+        "label": "Rasuwa",
+        "provinceValue": [2],
+        "provinceLabel": ["Bagmati"]
+    },
+    {
+        "value": 29,
+        "label": "Dhading",
+        "provinceValue": [2],
+        "provinceLabel": ["Bagmati"]
+    },
+    {
+        "value": 30,
+        "label": "Makawanpur",
+        "provinceValue": [2],
+        "provinceLabel": ["Bagmati"]
+    },
+    {
+        "value": 31,
+        "label": "Rautahat",
+        "provinceValue": [1],
+        "provinceLabel": ["Province 2"]
+    },
+    {
+        "value": 32,
+        "label": "Bara",
+        "provinceValue": [1],
+        "provinceLabel": ["Province 2"]
+    },
+    {
+        "value": 33,
+        "label": "Parsa",
+        "provinceValue": [1],
+        "provinceLabel": ["Province 2"]
+    },
+    {
+        "value": 34,
+        "label": "Chitawan",
+        "provinceValue": [2],
+        "provinceLabel": ["Bagmati"]
+    },
+    {
+        "value": 35,
+        "label": "Gorkha",
+        "provinceValue": [3],
+        "provinceLabel": ["Gandaki"]
+    },
+    {
+        "value": 36,
+        "label": "Lamjung",
+        "provinceValue": [3],
+        "provinceLabel": ["Gandaki"]
+    },
+    {
+        "value": 37,
+        "label": "Tanahu",
+        "provinceValue": [3],
+        "provinceLabel": ["Gandaki"]
+    },
+    {
+        "value": 38,
+        "label": "Syangja",
+        "provinceValue": [3],
+        "provinceLabel": ["Gandaki"]
+    },
+    {
+        "value": 39,
+        "label": "Kaski",
+        "provinceValue": [3],
+        "provinceLabel": ["Gandaki"]
+    },
+    {
+        "value": 40,
+        "label": "Manang",
+        "provinceValue": [3],
+        "provinceLabel": ["Gandaki"]
+    },
+    {
+        "value": 41,
+        "label": "Mustang",
+        "provinceValue": [3],
+        "provinceLabel": ["Gandaki"]
+    },
+    {
+        "value": 42,
+        "label": "Myagdi",
+        "provinceValue": [3],
+        "provinceLabel": ["Gandaki"]
+    },
+    {
+        "value": 43,
+        "label": "Parbat",
+        "provinceValue": [3],
+        "provinceLabel": ["Gandaki"]
+    },
+    {
+        "value": 44,
+        "label": "Baglung",
+        "provinceValue": [3],
+        "provinceLabel": ["Gandaki"]
+    },
+    {
+        "value": 45,
+        "label": "Gulmi",
+        "provinceValue": [4],
+        "provinceLabel": ["Province 5"]
+    },
+    {
+        "value": 46,
+        "label": "Palpa",
+        "provinceValue": [4],
+        "provinceLabel": ["Province 5"]
+    },
+    {
+        "value": 47,
+        "label": "Nawalparasi West",
+        "provinceValue": [4],
+        "provinceLabel": ["Province 5"]
+    },
+    {
+        "value": 48,
+        "label": "Rupandehi",
+        "provinceValue": [4],
+        "provinceLabel": ["Province 5"]
+    },
+    {
+        "value": 49,
+        "label": "Kapilbastu",
+        "provinceValue": [4],
+        "provinceLabel": ["Province 5"]
+    },
+    {
+        "value": 50,
+        "label": "Arghakhanchi",
+        "provinceValue": [4],
+        "provinceLabel": ["Province 5"]
+    },
+    {
+        "value": 51,
+        "label": "Pyuthan",
+        "provinceValue": [4],
+        "provinceLabel": ["Province 5"]
+    },
+    {
+        "value": 52,
+        "label": "Rolpa",
+        "provinceValue": [4],
+        "provinceLabel": ["Province 5"]
+    },
+    {
+        "value": 53,
+        "label": "Rukum West",
+        "provinceValue": [5],
+        "provinceLabel": ["Karnali"]
+    },
+    {
+        "value": 54,
+        "label": "Salyan",
+        "provinceValue": [5],
+        "provinceLabel": ["Karnali"]
+    },
+    {
+        "value": 55,
+        "label": "Dang",
+        "provinceValue": [4],
+        "provinceLabel": ["Province 5"]
+    },
+    {
+        "value": 56,
+        "label": "Banke",
+        "provinceValue": [4],
+        "provinceLabel": ["Province 5"]
+    },
+    {
+        "value": 57,
+        "label": "Bardiya",
+        "provinceValue": [4],
+        "provinceLabel": ["Province 5"]
+    },
+    {
+        "value": 58,
+        "label": "Surkhet",
+        "provinceValue": [5],
+        "provinceLabel": ["Karnali"]
+    },
+    {
+        "value": 59,
+        "label": "Dailekh",
+        "provinceValue": [5],
+        "provinceLabel": ["Karnali"]
+    },
+    {
+        "value": 60,
+        "label": "Jajarkot",
+        "provinceValue": [5],
+        "provinceLabel": ["Karnali"]
+    },
+    {
+        "value": 61,
+        "label": "Dolpa",
+        "provinceValue": [5],
+        "provinceLabel": ["Karnali"]
+    },
+    {
+        "value": 62,
+        "label": "Jumla",
+        "provinceValue": [5],
+        "provinceLabel": ["Karnali"]
+    },
+    {
+        "value": 63,
+        "label": "Kalikot",
+        "provinceValue": [5],
+        "provinceLabel": ["Karnali"]
+    },
+    {
+        "value": 64,
+        "label": "Mugu",
+        "provinceValue": [5],
+        "provinceLabel": ["Karnali"]
+    },
+    {
+        "value": 65,
+        "label": "Humla",
+        "provinceValue": [5],
+        "provinceLabel": ["Karnali"]
+    },
+    {
+        "value": 66,
+        "label": "Bajura",
+        "provinceValue": [6],
+        "provinceLabel": ["Sudur Pashchim"]
+    },
+    {
+        "value": 67,
+        "label": "Bajhang",
+        "provinceValue": [6],
+        "provinceLabel": ["Sudur Pashchim"]
+    },
+    {
+        "value": 68,
+        "label": "Achham",
+        "provinceValue": [6],
+        "provinceLabel": ["Sudur Pashchim"]
+    },
+    {
+        "value": 69,
+        "label": "Doti",
+        "provinceValue": [6],
+        "provinceLabel": ["Sudur Pashchim"]
+    },
+    {
+        "value": 70,
+        "label": "Kailali",
+        "provinceValue": [6],
+        "provinceLabel": ["Sudur Pashchim"]
+    },
+    {
+        "value": 71,
+        "label": "Kanchanpur",
+        "provinceValue": [6],
+        "provinceLabel": ["Sudur Pashchim"]
+    },
+    {
+        "value": 72,
+        "label": "Dadeldhura",
+        "provinceValue": [6],
+        "provinceLabel": ["Sudur Pashchim"]
+    },
+    {
+        "value": 73,
+        "label": "Baitadi",
+        "provinceValue": [6],
+        "provinceLabel": ["Sudur Pashchim"]
+    },
+    {
+        "value": 74,
+        "label": "Darchula",
+        "provinceValue": [6],
+        "provinceLabel": ["Sudur Pashchim"]
+    },
+    {
+        "value": 75,
+        "label": "Nawalparasi East",
+        "provinceValue": [3],
+        "provinceLabel": ["Gandaki"]
+    },
+    {
+        "value": 76,
+        "label": "Rukum East",
+        "provinceValue": [4],
+        "provinceLabel": ["Province 5"]
+    }
+]

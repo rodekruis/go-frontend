@@ -1,0 +1,30 @@
+[
+    {
+        "value": 0,
+        "label": "Individual"
+    },
+    {
+        "value": 1,
+        "label": "Household"
+    },
+    {
+        "value": 2,
+        "label": "NRCS Volunteer"
+    },
+    {
+        "value": 3,
+        "label": "NRCS Employee"
+    },
+    {
+        "value": 4,
+        "label": "Other Volunteer"
+    },
+    {
+        "value": 5,
+        "label": "Government Staff"
+    },
+    {
+        "value": 6,
+        "label": "Other"
+    }
+]

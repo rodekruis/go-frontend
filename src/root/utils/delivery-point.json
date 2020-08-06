@@ -1,0 +1,70 @@
+[
+    {
+        "value": 0,
+        "label": "Community"
+    },
+    {
+        "value": 1,
+        "label": "Institution"
+    },
+    {
+        "value": 2,
+        "label": "Quarantine Site"
+    },
+    {
+        "value": 3,
+        "label": "Port of Entry"
+    },
+    {
+        "value": 4,
+        "label": "Holding Center"
+    },
+    {
+        "value": 5,
+        "label": "Isolation Center"
+    },
+    {
+        "value": 6,
+        "label": "Office"
+    },
+    {
+        "value": 7,
+        "label": "Organization"
+    },
+    {
+        "value": 8,
+        "label": "Health Service Center"
+    },
+    {
+        "value": 9,
+        "label": "Blood Transfusion Service"
+    },
+    {
+        "value": 10,
+        "label": "Eye Care Center"
+    },
+    {
+        "value": 11,
+        "label": "Ambulance Service"
+    },
+    {
+        "value": 12,
+        "label": "Health/Help-desk Service"
+    },
+    {
+        "value": 13,
+        "label": "Central Warehouse"
+    },
+    {
+        "value": 14,
+        "label": "Regional Warehouse"
+    },
+    {
+        "value": 15,
+        "label": "Sub-Regional Warehouse"
+    },
+    {
+        "value": 16,
+        "label": "Other"
+    }
+]

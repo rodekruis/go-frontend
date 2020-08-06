@@ -1,0 +1,9 @@
+[
+    { "value": 0, "label": "Province 1" },
+    { "value": 1, "label": "Province 2" },
+    { "value": 2, "label": "Bagmati" },
+    { "value": 3, "label": "Gandaki" },
+    { "value": 4, "label": "Province 5" },
+    { "value": 5, "label": "Karnali" },
+    { "value": 6, "label": "Sudur Pashchim" }
+]

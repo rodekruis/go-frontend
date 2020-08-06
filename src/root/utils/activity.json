@@ -1,0 +1,90 @@
+[
+    {
+        "value": 0,
+        "label": "Conduct training/orientation on COVID-19 / PPE and IPC measure"
+    },
+    {
+        "value": 1,
+        "label": "Blood donation campaign"
+    },
+    {
+        "value": 2,
+        "label": "Establish health/help desk"
+    },
+    {
+        "value": 3,
+        "label": "Distribute personal protective equipment to COVID-19 responders"
+    },
+    {
+        "value": 4,
+        "label": "Support medical equipment and materials"
+    },
+    {
+        "value": 5,
+        "label": "Provide psychosocial support(PSS) training/orientation"
+    },
+    {
+        "value": 6,
+        "label": "Upgrade the service of Ambulance"
+    },
+    {
+        "value": 7,
+        "label": "Provide psychosocial first aid (PFA)training/orientation"
+    },
+    {
+        "value": 8,
+        "label": "Conduct COVID-19  awareness activities for community (risk communication)"
+    },
+    {
+        "value": 9,
+        "label": "Conduct Epidemic Control for Volunteers (ECV) training, orientation and mobilization"
+    },
+    {
+        "value": 10,
+        "label": "Setup of temporary quarantine space"
+    },
+    {
+        "value": 11,
+        "label": "Training to NRCS staff and volunteers on community based surveillance, contact tracing"
+    },
+    {
+        "value": 12,
+        "label": "Broadcast radio programs and Public Service Announcement"
+    },
+    {
+        "value": 13,
+        "label": "COVID-19 preparedness and response operation assessment, surveys, evaluation"
+    },
+    {
+        "value": 14,
+        "label": "Construction, repair and maintenance activity"
+    },
+    {
+        "value": 15,
+        "label": "Demonstration on hand washing activity"
+    },
+    {
+        "value": 16,
+        "label": "Distribute WASH materials"
+    },
+    {
+        "value": 17,
+        "label": "Distribute information,education,communication materials"
+    },
+    {
+        "value": 18,
+        "label": "Provide non-food items to the families most affected by COVID-19"
+    },
+    {
+        "value": 19,
+        "label": "Provide shelter and non-food relief items to the families /people  affected by COVID-19"
+    },
+    {
+        "value": 20,
+        "label": "Staff and volunteer mobilization in COVID-19 preparedness and response operation (for all sectors)"
+    },
+    {
+        "value": 21,
+        "label": "Support to establish/upgrade/expand quarantine facilities (in-kind and cash support as per local need and context)"
+    }
+]

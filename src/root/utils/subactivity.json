@@ -1,0 +1,407 @@
+[
+    {
+        "value": 0,
+        "label": "Training",
+        "activityLabel": [
+            "Conduct training/orientation on COVID-19/ PPE and IPC measure",
+            "Conduct Epidemic Control for Volunteers (ECV) training, orientation and mobilization",
+            "Training to NRCS staff and volunteers on community based surveillance, contact tracing"
+        ],
+        "activityValue": [0, 9, 11]
+    },
+    {
+        "value": 1,
+        "label": "Orientation",
+        "activityLabel": [
+            "Conduct training/orientation on COVID-19/ PPE and IPC measure",
+            "Conduct Epidemic Control for Volunteers (ECV) training, orientation and mobilization",
+            "Training to NRCS staff and volunteers on community based surveillance, contact tracing"
+        ],
+        "activityValue": [0, 9, 11]
+    },
+    {
+        "value": 2,
+        "label": "Donation Campaign",
+        "activityLabel": ["Blood donation campaign"],
+        "activityValue": [1]
+    },
+    {
+        "value": 3,
+        "label": "Door to door blood collection mechanism",
+        "activityLabel": ["Blood donation campaign"],
+        "activityValue": [1]
+    },
+    {
+        "value": 4,
+        "label": "Health Desk",
+        "activityLabel": ["Establish health/help desk"],
+        "activityValue": [2]
+    },
+    {
+        "value": 5,
+        "label": "Help Desk",
+        "activityLabel": ["Establish health/help desk"],
+        "activityValue": [2]
+    },
+    {
+        "value": 6,
+        "label": "Full Body PPE Set",
+        "activityLabel": [
+            "Distribute personal protective equipment to COVID-19 responders"
+        ],
+        "activityValue": [3]
+    },
+    {
+        "value": 7,
+        "label": "Full Body Apron",
+        "activityLabel": [
+            "Distribute personal protective equipment to COVID-19 responders"
+        ],
+        "activityValue": [3]
+    },
+    {
+        "value": 8,
+        "label": "Mask",
+        "activityLabel": [
+            "Distribute personal protective equipment to COVID-19 responders"
+        ],
+        "activityValue": [3]
+    },
+    {
+        "value": 9,
+        "label": "N95 Mask",
+        "activityLabel": [
+            "Distribute personal protective equipment to COVID-19 responders"
+        ],
+        "activityValue": [3]
+    },
+    {
+        "value": 10,
+        "label": "Disposable/examination gloves",
+        "activityLabel": [
+            "Distribute personal protective equipment to COVID-19 responders"
+        ],
+        "activityValue": [3]
+    },
+    {
+        "value": 11,
+        "label": "Goggles/face shield",
+        "activityLabel": [
+            "Distribute personal protective equipment to COVID-19 responders"
+        ],
+        "activityValue": [3]
+    },
+    {
+        "value": 12,
+        "label": "Rubber boot (Long tube rubber shoe)",
+        "activityLabel": [
+            "Distribute personal protective equipment to COVID-19 responders"
+        ],
+        "activityValue": [3]
+    },
+    {
+        "value": 13,
+        "label": "Shoes with cover",
+        "activityLabel": [
+            "Distribute personal protective equipment to COVID-19 responders"
+        ],
+        "activityValue": [3]
+    },
+    {
+        "value": 14,
+        "label": "Head cover",
+        "activityLabel": [
+            "Distribute personal protective equipment to COVID-19 responders"
+        ],
+        "activityValue": [3]
+    },
+    {
+        "value": 15,
+        "label": "Other",
+        "activityLabel": [
+            "Distribute personal protective equipment to COVID-19 responders",
+            "Conduct COVID-19  awareness activities for community (risk communication)",
+            "Setup of temporary quarantine space"
+        ],
+        "activityValue": [3, 8, 10]
+    },
+    {
+        "value": 16,
+        "label": "First aid kit",
+        "activityLabel": [
+            "Support medical equipment and materials",
+            "Upgrade the service of Ambulance"
+        ],
+        "activityValue": [4, 6]
+    },
+    {
+        "value": 17,
+        "label": "PSS kit",
+        "activityLabel": ["Support medical equipment and materials"],
+        "activityValue": [4]
+    },
+    {
+        "value": 18,
+        "label": "Emergency Kit",
+        "activityLabel": ["Support medical equipment and materials"],
+        "activityValue": [4]
+    },
+    {
+        "value": 19,
+        "label": "Infrared thermometer",
+        "activityLabel": ["Support medical equipment and materials"],
+        "activityValue": [4]
+    },
+    {
+        "value": 20,
+        "label": "Ventilator",
+        "activityLabel": ["Support medical equipment and materials"],
+        "activityValue": [4]
+    },
+    {
+        "value": 21,
+        "label": "Liquid hand washing soap with pump",
+        "activityLabel": ["Support medical equipment and materials"],
+        "activityValue": [4]
+    },
+    {
+        "value": 22,
+        "label": "Hand Sanitizer",
+        "activityLabel": [
+            "Support medical equipment and materials",
+            "Distribute WASH materials"
+        ],
+        "activityValue": [4, 16]
+    },
+    {
+        "value": 23,
+        "label": "Disinfect solutions Hydrochloride",
+        "activityLabel": ["Support medical equipment and materials"],
+        "activityValue": [4]
+    },
+    {
+        "value": 24,
+        "label": "Disinfect sprayer",
+        "activityLabel": ["Support medical equipment and materials"],
+        "activityValue": [4]
+    },
+    {
+        "value": 25,
+        "label": "Psychosocial support orientation",
+        "activityLabel": [
+            "Provide psychosocial support(PSS) training/orientation"
+        ],
+        "activityValue": [5]
+    },
+    {
+        "value": 26,
+        "label": "Psychosocial support training",
+        "activityLabel": [
+            "Provide psychosocial support(PSS) training/orientation"
+        ],
+        "activityValue": [5]
+    },
+    {
+        "value": 27,
+        "label": "Material support",
+        "activityLabel": ["Upgrade the service of Ambulance"],
+        "activityValue": [6]
+    },
+    {
+        "value": 28,
+        "label": "Compartment division",
+        "activityLabel": ["Upgrade the service of Ambulance"],
+        "activityValue": [6]
+    },
+    {
+        "value": 29,
+        "label": "Psychosocial first aid training",
+        "activityLabel": [
+            "Provide psychosocial first aid (PFA)training/orientation"
+        ],
+        "activityValue": [7]
+    },
+    {
+        "value": 30,
+        "label": "Psychosocial first aid orientation",
+        "activityLabel": [
+            "Provide psychosocial first aid (PFA)training/orientation"
+        ],
+        "activityValue": [7]
+    },
+    {
+        "value": 31,
+        "label": "Miking",
+        "activityLabel": [
+            "Conduct COVID-19  awareness activities for community (risk communication)"
+        ],
+        "activityValue": [8]
+    },
+    {
+        "value": 32,
+        "label": "Rally",
+        "activityLabel": [
+            "Conduct COVID-19  awareness activities for community (risk communication)"
+        ],
+        "activityValue": [8]
+    },
+    {
+        "value": 33,
+        "label": "Street Drama",
+        "activityLabel": [
+            "Conduct COVID-19  awareness activities for community (risk communication)"
+        ],
+        "activityValue": [8]
+    },
+    {
+        "value": 34,
+        "label": "Door to door visit",
+        "activityLabel": [
+            "Conduct COVID-19  awareness activities for community (risk communication)"
+        ],
+        "activityValue": [8]
+    },
+    {
+        "value": 35,
+        "label": "Mobilization",
+        "activityLabel": [
+            "Conduct Epidemic Control for Volunteers (ECV) training, orientation and mobilization"
+        ],
+        "activityValue": [9]
+    },
+    {
+        "value": 36,
+        "label": "Blood bank employee",
+        "activityLabel": ["Setup of temporary quarantine space"],
+        "activityValue": [10]
+    },
+    {
+        "value": 37,
+        "label": "NRCS employee",
+        "activityLabel": ["Setup of temporary quarantine space"],
+        "activityValue": [10]
+    },
+    {
+        "value": 38,
+        "label": "COVID-19 related NRCS radio program",
+        "activityLabel": [
+            "Broadcast radio programs and Public Service Announcement"
+        ],
+        "activityValue": [12]
+    },
+    {
+        "value": 39,
+        "label": "Evaluation",
+        "activityLabel": [
+            "COVID-19 preparedness and response operation assessment, surveys, evaluation"
+        ],
+        "activityValue": [13]
+    },
+    {
+        "value": 40,
+        "label": "Construction of hand washing station",
+        "activityLabel": ["Construction, repair and maintenance activity"],
+        "activityValue": [14]
+    },
+    {
+        "value": 41,
+        "label": "Water supply connection",
+        "activityLabel": ["Construction, repair and maintenance activity"],
+        "activityValue": [14]
+    },
+    {
+        "value": 42,
+        "label": "Demonstration on hand washing",
+        "activityLabel": ["Demonstration on hand washing activity"],
+        "activityValue": [15]
+    },
+    {
+        "value": 43,
+        "label": "Soap",
+        "activityLabel": ["Distribute WASH materials"],
+        "activityValue": [16]
+    },
+    {
+        "value": 44,
+        "label": "Bucket",
+        "activityLabel": ["Distribute WASH materials"],
+        "activityValue": [16]
+    },
+    {
+        "value": 45,
+        "label": "Hygiene Kit",
+        "activityLabel": ["Distribute WASH materials"],
+        "activityValue": [16]
+    },
+    {
+        "value": 46,
+        "label": "Mug",
+        "activityLabel": ["Distribute WASH materials"],
+        "activityValue": [16]
+    },
+    {
+        "value": 47,
+        "label": "Leaflet/Pamphlets(Health)",
+        "activityLabel": [
+            "Distribute information,education,communication materials"
+        ],
+        "activityValue": [17]
+    },
+    {
+        "value": 48,
+        "label": "Blankets",
+        "activityLabel": [
+            "Provide non-food items to the families most affected by COVID-19"
+        ],
+        "activityValue": [18]
+    },
+    {
+        "value": 49,
+        "label": "Tarpaulin",
+        "activityLabel": [
+            "Provide non-food items to the families most affected by COVID-19",
+            "Provide shelter and non-food relief items to the families /people  affected by COVID-19"
+        ],
+        "activityValue": [18, 19]
+    },
+    {
+        "value": 50,
+        "label": "Blanket",
+        "activityLabel": [
+            "Provide shelter and non-food relief items to the families /people  affected by COVID-19"
+        ],
+        "activityValue": [19]
+    },
+    {
+        "value": 51,
+        "label": "Kitchen Set",
+        "activityLabel": [
+            "Provide shelter and non-food relief items to the families /people  affected by COVID-19"
+        ],
+        "activityValue": [19]
+    },
+    {
+        "value": 52,
+        "label": "Volunteer",
+        "activityLabel": [
+            "Staff and volunteer mobilization in COVID-19 preparedness and response operation (for all sectors)"
+        ],
+        "activityValue": [20]
+    },
+    {
+        "value": 53,
+        "label": "Staff",
+        "activityLabel": [
+            "Staff and volunteer mobilization in COVID-19 preparedness and response operation (for all sectors)"
+        ],
+        "activityValue": [20]
+    },
+    {
+        "value": 54,
+        "label": "In- kind support (materials)",
+        "activityLabel": [
+            "Support to establish/upgrade/expand quarantine facilities (in-kind and cash support as per local need and context)"
+        ],
+        "activityValue": [21]
+    }
+]
